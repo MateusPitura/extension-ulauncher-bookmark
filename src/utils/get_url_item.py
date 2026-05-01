@@ -1,7 +1,8 @@
 from ulauncher.api.shared.action.ExtensionCustomAction import ExtensionCustomAction
 from .get_profile_path import get_profile_path
 import os
-from ...main import get_favicon, remove_url_prefix
+from ...main import get_favicon
+from .remove_url_prefix import remove_url_prefix
 
 def get_url_item(item, event, extension):
     profile_name = item.get("full_path", "").split(" ")[0]
