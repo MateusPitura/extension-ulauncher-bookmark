@@ -11,6 +11,8 @@ from src.utils.get_profile_path import get_profile_path
 from src.utils.get_profiles_items import get_profiles_items
 from src.utils.sort_by_date_last_used import sort_by_date_last_used
 from src.utils.format_limited_results import format_limited_results
+from src.repository.BookmarkRepository import BookmarkRepository
+from src.utils.populate_from_profiles import populate_from_profiles
 from datetime import datetime, timezone
 from ulauncher.api.client.Extension import Extension
 from ulauncher.api.client.EventListener import EventListener
@@ -33,6 +35,11 @@ class LunetaBrowserBookmark(Extension):
         super(LunetaBrowserBookmark, self).__init__()
         self.subscribe(KeywordQueryEvent, KeywordQueryEventListener())
         self.subscribe(ItemEnterEvent, ItemEnterEventListener())
+
+        bookmarkRepository = BookmarkRepository()
+
+        populate_from_profiles(repository=bookmarkRepository, extension=self)
+
         clear_cache()
 
 

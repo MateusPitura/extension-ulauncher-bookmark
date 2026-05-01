@@ -1,0 +1,31 @@
+from parse_bookmarks import parse_bookmarks
+import os
+import json
+
+def populate_from_profiles(repository, extension):
+    profiles = extension.preferences.get("profiles", "")
+    base_path = extension.preferences.get("base_bookmark_path")
+
+    for profile in profiles.split(";"):
+        if "=" not in profile:
+            continue
+
+        profile_name, profile_path = profile.split("=", 1)
+        profile_name = profile_name.strip()
+        profile_path = os.path.expanduser(profile_path.strip())
+
+        bookmarks_file = os.path.join(profile_path, "Bookmarks")
+
+        if not os.path.exists(bookmarks_file):
+            continue
+
+        with open(bookmarks_file, "r", encoding="utf-8") as f:
+            data = json.load(f)
+
+        root = data["roots"].get(base_path)
+        if not root:
+            continue
+
+        parse_bookmarks(repository, root, profile_name, "")
+
+    repository.conn.commit()
