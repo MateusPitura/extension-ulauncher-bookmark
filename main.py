@@ -38,6 +38,7 @@ class LunetaBrowserBookmark(Extension):
 
         bookmarkRepository = BookmarkRepository(dirname=os.path.dirname(__file__))
 
+        print(f"🌠 self.preferences: {self.preferences}")
         populate_from_profiles(repository=bookmarkRepository, extension=self)
 
         clear_cache()
