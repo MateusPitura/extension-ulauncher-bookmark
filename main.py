@@ -333,8 +333,8 @@ class KeywordQueryEventListener(EventListener):
 
 class PreferencesEventListener(EventListener):
     def on_event(self, event, extension):
-        print(f"🌠 extension: {extension.preferences}")
-        populate_from_profiles(self.repository, extension)
+        print(f"🌠 extension 2: {extension.preferences}")
+        populate_from_profiles(extension.repository, extension)
 
 if __name__ == "__main__":
     LunetaBrowserBookmark().run()
