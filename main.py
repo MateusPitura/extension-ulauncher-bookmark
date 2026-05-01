@@ -104,8 +104,11 @@ def get_favicon(url, event, extension):
 
 
 def append_url(item, event, extension):
+    print(f"🌠 full_path", item.get("full_path", ""))
     profile_name = item.get("full_path", "").split(" ")[0]
+    print(f"🌠 profile_name: {profile_name}")
     profile_path = get_profile_path(profile_name, extension)
+    print(f"🌠 profile_path: {profile_path}")
     profile_path_formatted = os.path.basename(os.path.normpath(profile_path))
 
     bookmark_name = item.get("name", "Unknown")
