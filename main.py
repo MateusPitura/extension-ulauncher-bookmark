@@ -214,7 +214,7 @@ def get_bookmark_items(query="", event=None, extension=None):
     #             if contains(bookmark_name, search_term) or contains(bookmark_url, search_term):
     #                 append_url(url_items, item, event, extension)
 
-    max_results = get_max_results(items, extension)
+    max_results = get_max_results(extension)
     print(f"🌠 max_results: {max_results}")
 
     items = extension.repository.search_by_full_path(query, max_results)
