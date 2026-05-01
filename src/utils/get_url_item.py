@@ -1,7 +1,7 @@
 from ulauncher.api.shared.action.ExtensionCustomAction import ExtensionCustomAction
 from .get_profile_path import get_profile_path
 import os
-from ...main import get_favicon
+# from ...main import get_favicon
 from .remove_url_prefix import remove_url_prefix
 
 def get_url_item(item, event, extension):
@@ -13,7 +13,7 @@ def get_url_item(item, event, extension):
     bookmark_url = item.get("url", "www.example.com")
 
     return {
-        "icon": get_favicon(bookmark_url, event, extension),
+        "icon": "",  # 🌠 improve it
         "name": bookmark_name,
         "description": remove_url_prefix(bookmark_url),
         "on_enter": ExtensionCustomAction(
