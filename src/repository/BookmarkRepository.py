@@ -7,6 +7,7 @@ import time
 class BookmarkRepository:
     def __init__(self):
         db_path = f'{get_preferences_path()}/data.db'
+        print(f"🌠 db_path: {db_path}")
         os.makedirs(os.path.dirname(db_path), exist_ok=True)
         self.conn = sqlite3.connect(db_path)
 
