@@ -13,7 +13,7 @@
       "type": "input",
       "name": "Profiles",
       "default_value": "personal=~/.config/google-chrome/Default/; work=~/.config/google-chrome/Profile 1/",
-      "description": "key=value records separated by semicolon (;). Example: personal=~/.config/google-chrome/Default/; work=~/.config/google-chrome/Profile 1/"
+      "description": "key=value records separated by semicolon (;): personal=~/.config/google-chrome/Default/; work=~/.config/google-chrome/Profile 1/"
     },
     {
       "id": "keyword",
@@ -38,17 +38,6 @@
       "options": [
         { "value": "bookmark_bar", "text": "Bookmarks Bar" },
         { "value": "other", "text": "All Bookmarks" }
-      ]
-    },
-    {
-      "id": "update_last_used",
-      "type": "select",
-      "name": "Update Date Last Used of Bookmarks",
-      "description": "Update the date last used of bookmarks when they are opened so that recent bookmarks appear first in the results. However, this writes to the Chrome bookmarks file and can lead to issues",
-      "default_value": "false",
-      "options": [
-        { "value": "true", "text": "True" },
-        { "value": "false", "text": "False" }
       ]
     }
   ]
