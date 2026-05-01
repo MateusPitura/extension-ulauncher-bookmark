@@ -36,7 +36,7 @@ class LunetaBrowserBookmark(Extension):
         self.subscribe(KeywordQueryEvent, KeywordQueryEventListener())
         self.subscribe(ItemEnterEvent, ItemEnterEventListener())
 
-        bookmarkRepository = BookmarkRepository()
+        bookmarkRepository = BookmarkRepository(dirname=os.path.dirname(__file__))
 
         populate_from_profiles(repository=bookmarkRepository, extension=self)
 
