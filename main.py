@@ -225,7 +225,7 @@ def get_bookmark_items(query="", event=None, extension=None):
     print(f"🌠 items: {items}")
 
     return [
-        ExtensionResultItem(items)
+        ExtensionResultItem(item)
         for item in items
     ]
 
@@ -311,7 +311,7 @@ class KeywordQueryEventListener(EventListener):
             items = get_bookmark_items(query, event, extension)
 
         except Exception as e:
-            print(f"🌠 error")
+            print(f"🌠 error", e)
             items.append(ExtensionResultItem(
                 icon="images/logo.png",
                 name="Luneta Browser Bookmark",
