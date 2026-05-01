@@ -23,6 +23,7 @@ from ulauncher.api.shared.item.ExtensionResultItem import ExtensionResultItem
 from ulauncher.api.shared.action.RenderResultListAction import RenderResultListAction
 from ulauncher.api.shared.action.SetUserQueryAction import SetUserQueryAction
 from ulauncher.api.shared.action.ExtensionCustomAction import ExtensionCustomAction
+from ulauncher.api.shared.event import PreferencesEvent
 
 CACHE_DIR = os.path.expanduser(
     "~/.cache/ulauncher_luneta-browser-bookmark_favicons")
@@ -35,11 +36,9 @@ class LunetaBrowserBookmark(Extension):
         super(LunetaBrowserBookmark, self).__init__()
         self.subscribe(KeywordQueryEvent, KeywordQueryEventListener())
         self.subscribe(ItemEnterEvent, ItemEnterEventListener())
+        self.subscribe(PreferencesEvent, PreferencesEventListener())
 
-        bookmarkRepository = BookmarkRepository(dirname=os.path.dirname(__file__))
-
-        print(f"🌠 self.preferences: {self.preferences}")
-        populate_from_profiles(repository=bookmarkRepository, extension=self)
+        self.repository = BookmarkRepository(dirname=os.path.dirname(__file__))
 
         clear_cache()
 
@@ -286,7 +285,6 @@ def update_chrome_bookmark_date(
 
 
 class ItemEnterEventListener(EventListener):
-
     def on_event(self, event, extension):
         data = event.get_data()
 
@@ -333,6 +331,10 @@ class KeywordQueryEventListener(EventListener):
 
         return RenderResultListAction(items)
 
+class PreferencesEventListener(EventListener):
+    def on_event(self, event, extension):
+        print(f"🌠 extension: {extension.preferences}")
+        populate_from_profiles(self.repository, extension)
 
 if __name__ == "__main__":
     LunetaBrowserBookmark().run()
