@@ -14,6 +14,5 @@ def get_profiles_items(event, extension):
                 "name": name.strip(),
                 "description": "Click to filter by this profile",
                 "on_enter": SetUserQueryAction(f"{keyword} {name.strip()}"),
-                "type": "folder"
             })
     return profiles_names

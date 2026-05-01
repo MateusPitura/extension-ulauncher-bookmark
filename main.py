@@ -10,6 +10,7 @@ import subprocess
 from src.utils.get_profile_path import get_profile_path
 from src.utils.get_profiles_items import get_profiles_items
 from src.utils.sort_by_date_last_used import sort_by_date_last_used
+from src.utils.format_limited_results import format_limited_results
 from datetime import datetime, timezone
 from ulauncher.api.client.Extension import Extension
 from ulauncher.api.client.EventListener import EventListener
@@ -223,21 +224,8 @@ def get_bookmark_items(query="", event=None, extension=None):
     url_items = sort_by_date_last_used(url_items)
 
     items = profile_items + folder_items + url_items
-    
-    max_results = extension.preferences.get("max_results")
 
-    if max_results and max_results.isdigit():
-        return items[:int(max_results)]
-
-    return [
-        ExtensionResultItem(
-            icon=item["icon"],
-            name=item["name"],
-            description=item["description"],
-            on_enter=item["on_enter"]
-        )
-        for item in items
-    ]
+    return format_limited_results(items, extension)
 
 
 def google_timestamp_now():
