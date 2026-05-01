@@ -7,6 +7,7 @@ import unicodedata
 import shutil
 import sqlite3
 import subprocess
+from src.utils.get_profile_path import get_profile_path
 from datetime import datetime, timezone
 from ulauncher.api.client.Extension import Extension
 from ulauncher.api.client.EventListener import EventListener
@@ -47,7 +48,7 @@ def remove_accents(text):
     )
 
 
-def contains_ignore_accents(a, b):
+def contains(a, b):
     a_norm = remove_accents(a).lower()
     b_norm = remove_accents(b).lower()
     return b_norm in a_norm
@@ -75,8 +76,7 @@ def get_favicon(url, event, extension):
         return cache_file
 
     keyword = event.get_keyword()
-    profile_path = extension.preferences.get(
-        f"{get_profile_path(keyword, extension)}_path")
+    profile_path = extension.preferences.get(get_profile_path(keyword, extension))
     favicon_path = os.path.expanduser(f"{profile_path.rstrip('/')}/Favicons")
 
     if not Path(favicon_path).exists():
@@ -112,8 +112,7 @@ def get_favicon(url, event, extension):
 def append_url(items, item, event, extension):
     keyword = event.get_keyword()
 
-    profile_path = extension.preferences.get(
-        f"{get_profile_path(keyword, extension)}_path")
+    profile_path = extension.preferences.get(get_profile_path(keyword, extension))
 
     profile = os.path.basename(os.path.normpath(profile_path))
 
@@ -137,21 +136,10 @@ def append_url(items, item, event, extension):
     })
 
 
-def get_profile_path(keyword, extension):
-    pref_id = None
-    for pid, value in extension.preferences.items():
-        if value == keyword:
-            pref_id = pid
-            break
-    return pref_id
-
-
 def clear_cache():
     if os.path.exists(CACHE_DIR):
         shutil.rmtree(CACHE_DIR)
         os.makedirs(CACHE_DIR, exist_ok=True)
-        return True
-    return False
 
 
 def sort_items(items):
@@ -184,8 +172,7 @@ def get_bookmark_items(query="", event=None, extension=None):
 
     keyword = event.get_keyword()
 
-    profile_path = extension.preferences.get(
-        f"{get_profile_path(keyword, extension)}_path")
+    profile_path = extension.preferences.get(get_profile_path(keyword, extension))
 
     bookmarks_path = get_bookmarks_path(profile_path)
 
@@ -203,7 +190,7 @@ def get_bookmark_items(query="", event=None, extension=None):
         for part in parts:
             found = None
             for item in node:
-                if item.get("type", "") == "folder" and item.get("name", "").lower() == part.lower():
+                if item.get("type", "") == "folder" and item.get("name", "").lower() == part.lower(): # 🌠 repeated
                     found = item.get("children", [])
                     break
             if found is None:
@@ -217,7 +204,7 @@ def get_bookmark_items(query="", event=None, extension=None):
                 for part in folders:
                     found = None
                     for item in node:
-                        if item.get("type", "") == "folder" and item.get("name", "").lower() == part.lower():
+                        if item.get("type", "") == "folder" and item.get("name", "").lower() == part.lower(): # 🌠 repeated
                             found = item.get("children", [])
                             break
                     if found is None:
@@ -244,10 +231,10 @@ def get_bookmark_items(query="", event=None, extension=None):
                 append_url(items, item, event, extension)
         else:
             if item_type == "folder":
-                if contains_ignore_accents(bookmark_name, search_term):
+                if contains(bookmark_name, search_term):
                     append_folder(items, item, base_path, event)
             elif item_type == "url":
-                if contains_ignore_accents(bookmark_name, search_term) or contains_ignore_accents(bookmark_url, search_term):
+                if contains(bookmark_name, search_term) or contains(bookmark_url, search_term):
                     append_url(items, item, event, extension)
 
     max_results = extension.preferences.get("max_results")
