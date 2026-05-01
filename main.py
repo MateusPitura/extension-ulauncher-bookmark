@@ -38,7 +38,6 @@ class LunetaBrowserBookmark(Extension):
         self.subscribe(ItemEnterEvent, ItemEnterEventListener())
         self.subscribe(PreferencesEvent, PreferencesEventListener())
 
-        print(f"🌠 A")
         self.repository = BookmarkRepository(dirname=os.path.dirname(__file__))
 
         clear_cache()
@@ -142,9 +141,7 @@ def get_bookmarks_path(profile_path):
 
 
 def get_bookmark_items(query="", event=None, extension=None):
-    print(f"🌠 query")
     query = normalize_string(query.strip())
-    print(f"🌠 query: {query}")
 
     # keyword = event.get_keyword()
 
@@ -331,9 +328,7 @@ class KeywordQueryEventListener(EventListener):
 
 class PreferencesEventListener(EventListener):
     def on_event(self, event, extension):
-        print(f"🌠 on preferences")
         populate_from_profiles(extension.repository, event.preferences)
-        print(f"🌠 after populate")
 
 if __name__ == "__main__":
     LunetaBrowserBookmark().run()

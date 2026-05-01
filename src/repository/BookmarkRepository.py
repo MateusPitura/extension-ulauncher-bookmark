@@ -7,7 +7,7 @@ class BookmarkRepository:
         db_path = f'{get_preferences_path(dirname)}/data.db'
         os.makedirs(os.path.dirname(db_path), exist_ok=True)
         self.conn = sqlite3.connect(db_path)
-
+        self.conn.row_factory = sqlite3.Row
         self.cursor = self.conn.cursor()
 
         self.cursor.execute("""
@@ -38,6 +38,8 @@ class BookmarkRepository:
         ))
 
     def search_by_full_path(self, query, limit):
+        print(f"🌠 query: {query}")
+        print(f"🌠 limit: {limit}")
         self.cursor = self.conn.execute("""
             SELECT id, name, url, icon, full_path, last_used
             FROM bookmarks
