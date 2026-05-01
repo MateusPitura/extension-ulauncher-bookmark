@@ -104,6 +104,7 @@ def get_favicon(url, event, extension):
 
 
 def append_url(item, event, extension):
+    print(f"🌠 item: {item}")
     print(f"🌠 full_path", item.get("full_path", ""))
     profile_name = item.get("full_path", "").split(" ")[0]
     print(f"🌠 profile_name: {profile_name}")
