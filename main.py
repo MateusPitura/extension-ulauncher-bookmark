@@ -333,8 +333,6 @@ class KeywordQueryEventListener(EventListener):
 
 class PreferencesEventListener(EventListener):
     def on_event(self, event, extension):
-        print(f"🌠 event: {event.preferences}")
-        print(f"🌠 extension 2: {extension.preferences}")
         populate_from_profiles(extension.repository, event.preferences)
 
 if __name__ == "__main__":

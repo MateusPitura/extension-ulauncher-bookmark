@@ -7,6 +7,7 @@ def parse_bookmarks(repository, node, profile_name, current_path):
             new_path = f"{current_path}/{child['name']}" if current_path else child["name"]
 
             parse_bookmarks(
+                repository,
                 child,
                 profile_name,
                 new_path

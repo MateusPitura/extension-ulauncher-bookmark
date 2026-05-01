@@ -24,7 +24,7 @@ class BookmarkRepository:
         """)
 
         self.cursor.execute("DELETE FROM bookmarks")
-        print(f"🌠 deled all")
+        print(f"🌠 deleted all")
 
         self.conn.commit()
 

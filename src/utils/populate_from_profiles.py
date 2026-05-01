@@ -4,9 +4,7 @@ import json
 
 def populate_from_profiles(repository, preferences):
     profiles = preferences.get("profiles", "")
-    print(f"🌠 profiles: {profiles}")
     base_path = preferences.get("base_bookmark_path")
-    print(f"🌠 base_path: {base_path}")
 
     for profile in profiles.split(";"):
         if "=" not in profile:
