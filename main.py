@@ -8,8 +8,7 @@ import sqlite3
 import subprocess
 from src.utils.get_profile_path import get_profile_path
 from src.utils.get_profiles_items import get_profiles_items
-from src.utils.sort_by_date_last_used import sort_by_date_last_used
-from utils.get_max_results import get_max_results
+from src.utils.get_max_results import get_max_results
 from src.repository.BookmarkRepository import BookmarkRepository
 from src.utils.populate_from_profiles import populate_from_profiles
 from src.utils.remove_url_prefix import remove_url_prefix
