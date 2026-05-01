@@ -1,8 +1,6 @@
 import sqlite3
 from ..utils.get_preferences_path import get_preferences_path
-
 import os
-import time
 
 class BookmarkRepository:
     def __init__(self, dirname):
