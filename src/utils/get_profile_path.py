@@ -1,4 +1,4 @@
-def get_profile_path(keyword, extension):
+def get_profile_path(keyword, extension): # 🌠  remove this
     profiles = extension.preferences.get("profiles", "")
     for profile in profiles.split(";"):
         if "=" in profile:

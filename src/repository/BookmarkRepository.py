@@ -24,12 +24,10 @@ class BookmarkRepository:
         """)
 
         self.cursor.execute("DELETE FROM bookmarks")
-        print(f"🌠 deleted all")
 
         self.conn.commit()
 
-    def insert_bookmark(self, name, url, icon, full_path):
-        print(f"🌠 insert")
+    def insert_bookmark(self, name, url, icon, full_path, last_used):
         self.cursor.execute("""
             INSERT OR REPLACE INTO bookmarks (name, url, icon, full_path, last_used)
             VALUES (?, ?, ?, ?, ?)
@@ -38,5 +36,16 @@ class BookmarkRepository:
             url,
             icon,
             full_path,
-            int(time.time())
+            last_used
         ))
+
+    def search_by_full_path(self, query, limit):
+        self.cursor = self.conn.execute("""
+            SELECT id, name, url, icon, full_path, last_used
+            FROM bookmarks
+            WHERE full_path LIKE ?
+            ORDER BY last_used DESC
+            LIMIT ?
+        """, (f"%{query}%", limit))
+
+        return [dict(row) for row in self.cursor.fetchall()]

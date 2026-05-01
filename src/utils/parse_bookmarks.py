@@ -1,3 +1,7 @@
+from .remove_url_prefix import remove_url_prefix
+from .normalize_string import normalize_string
+from .google_timestamp_now import google_timestamp_now
+
 def parse_bookmarks(repository, node, profile_name, current_path):
     if "children" not in node:
         return
@@ -17,8 +21,9 @@ def parse_bookmarks(repository, node, profile_name, current_path):
             full_path = f"{profile_name} {current_path}/{child['name']}" if current_path else f"{profile_name} {child['name']}"
 
             repository.insert_bookmark(
-                name=child["name"], # 🌠 format
-                url=child["url"], # 🌠 format
+                name=child["name"],
+                url=remove_url_prefix(child["url"]),
                 icon="", # 🌠 improve
-                full_path=full_path
+                full_path=normalize_string(full_path),
+                last_used=child.get('date_last_used', google_timestamp_now())
             )

@@ -3,17 +3,18 @@ import os
 from pathlib import Path
 import hashlib
 import tempfile
-import unicodedata
 import shutil
 import sqlite3
 import subprocess
 from src.utils.get_profile_path import get_profile_path
 from src.utils.get_profiles_items import get_profiles_items
 from src.utils.sort_by_date_last_used import sort_by_date_last_used
-from src.utils.format_limited_results import format_limited_results
+from utils.get_max_results import get_max_results
 from src.repository.BookmarkRepository import BookmarkRepository
 from src.utils.populate_from_profiles import populate_from_profiles
-from datetime import datetime, timezone
+from src.utils.remove_url_prefix import remove_url_prefix
+from src.utils.google_timestamp_now import google_timestamp_now
+from src.utils.normalize_string import normalize_string
 from ulauncher.api.client.Extension import Extension
 from ulauncher.api.client.EventListener import EventListener
 from ulauncher.api.shared.event import ItemEnterEvent
@@ -43,24 +44,9 @@ class LunetaBrowserBookmark(Extension):
         clear_cache()
 
 
-def remove_url_prefix(url):
-    prefixes = ["http://www.", "https://www.", "http://", "https://"]
-    for prefix in prefixes:
-        if url.startswith(prefix):
-            return url[len(prefix):]
-    return url
-
-
-def remove_accents(text):
-    return ''.join(
-        c for c in unicodedata.normalize('NFD', text)
-        if unicodedata.category(c) != 'Mn'
-    )
-
-
 def contains(a, b):
-    a_norm = remove_accents(a).lower()
-    b_norm = remove_accents(b).lower()
+    a_norm = normalize_string(a)
+    b_norm = normalize_string(b)
     return b_norm in a_norm
 
 
@@ -156,90 +142,99 @@ def get_bookmarks_path(profile_path):
 
 
 def get_bookmark_items(query="", event=None, extension=None):
-    query = query.strip()
+    query = normalize_string(query.strip())
 
-    keyword = event.get_keyword()
+    # keyword = event.get_keyword()
 
-    profile_path = get_profile_path(keyword, extension)
+    # profile_path = get_profile_path(keyword, extension)
 
-    bookmarks_path = get_bookmarks_path(profile_path)
+    # bookmarks_path = get_bookmarks_path(profile_path)
 
-    with open(bookmarks_path, "r") as f:
-        data = json.load(f)
+    # with open(bookmarks_path, "r") as f:
+    #     data = json.load(f)
 
-    base_bookmark_path = extension.preferences.get("base_bookmark_path")
+    # base_bookmark_path = extension.preferences.get("base_bookmark_path")
 
-    node = data["roots"][base_bookmark_path]["children"]
-    parts = [p.strip() for p in query.split("/") if p.strip()]
-    search_term = None
-    base_path = ""
+    # node = data["roots"][base_bookmark_path]["children"]
+    # parts = [p.strip() for p in query.split("/") if p.strip()]
+    # search_term = None
+    # base_path = ""
 
-    if query.endswith("/") and parts:
-        for part in parts:
-            found = None
-            for item in node:
-                if item.get("type", "") == "folder" and item.get("name", "").lower() == part.lower(): # 🌠 repeated
-                    found = item.get("children", [])
-                    break
-            if found is None:
-                return []
-            node = found
-        base_path = "/".join(parts) + "/"
-    else:
-        if parts:
-            *folders, last = parts
-            if folders:
-                for part in folders:
-                    found = None
-                    for item in node:
-                        if item.get("type", "") == "folder" and item.get("name", "").lower() == part.lower(): # 🌠 repeated
-                            found = item.get("children", [])
-                            break
-                    if found is None:
-                        return []
-                    node = found
-                base_path = "/".join(folders) + "/"
-            else:
-                base_path = ""
-            search_term = last.lower()
-        else:
-            search_term = None
-            base_path = ""
+    # if query.endswith("/") and parts:
+    #     for part in parts:
+    #         found = None
+    #         for item in node:
+    #             if item.get("type", "") == "folder" and item.get("name", "").lower() == part.lower(): # 🌠 repeated
+    #                 found = item.get("children", [])
+    #                 break
+    #         if found is None:
+    #             return []
+    #         node = found
+    #     base_path = "/".join(parts) + "/"
+    # else:
+    #     if parts:
+    #         *folders, last = parts
+    #         if folders:
+    #             for part in folders:
+    #                 found = None
+    #                 for item in node:
+    #                     if item.get("type", "") == "folder" and item.get("name", "").lower() == part.lower(): # 🌠 repeated
+    #                         found = item.get("children", [])
+    #                         break
+    #                 if found is None:
+    #                     return []
+    #                 node = found
+    #             base_path = "/".join(folders) + "/"
+    #         else:
+    #             base_path = ""
+    #         search_term = last.lower()
+    #     else:
+    #         search_term = None
+    #         base_path = ""
 
-    url_items = []
-    folder_items = []
-    for item in node:
-        item_type = item.get("type", "")
-        bookmark_name = item.get("name", "Unknown")
-        bookmark_url = item.get("url", "")
+    # url_items = []
+    # folder_items = []
+    # for item in node:
+    #     item_type = item.get("type", "")
+    #     bookmark_name = item.get("name", "Unknown")
+    #     bookmark_url = item.get("url", "")
 
-        if search_term is None:
-            if item_type == "folder":
-                append_folder(folder_items, item, base_path, event)
-            elif item_type == "url":
-                append_url(url_items, item, event, extension)
-        else:
-            if item_type == "folder":
-                if contains(bookmark_name, search_term):
-                    append_folder(folder_items, item, base_path, event)
-            elif item_type == "url":
-                if contains(bookmark_name, search_term) or contains(bookmark_url, search_term):
-                    append_url(url_items, item, event, extension)
+    #     if search_term is None:
+    #         if item_type == "folder":
+    #             append_folder(folder_items, item, base_path, event)
+    #         elif item_type == "url":
+    #             append_url(url_items, item, event, extension)
+    #     else:
+    #         if item_type == "folder":
+    #             if contains(bookmark_name, search_term):
+    #                 append_folder(folder_items, item, base_path, event)
+    #         elif item_type == "url":
+    #             if contains(bookmark_name, search_term) or contains(bookmark_url, search_term):
+    #                 append_url(url_items, item, event, extension)
+
+    max_results = get_max_results(items, extension)
+    print(f"🌠 max_results: {max_results}")
+
+    items = extension.repository.search_by_full_path(query, max_results)
+    print(f"🌠 items: {items}")
 
     profile_items = get_profiles_items(event, extension)
+    print(f"🌠 profile_items: {profile_items}")
 
-    url_items = sort_by_date_last_used(url_items)
+    # url_items = sort_by_date_last_used(url_items)
 
-    items = profile_items + folder_items + url_items
+    items = profile_items + items
+    print(f"🌠 items: {items}")
 
-    return format_limited_results(items, extension)
-
-
-def google_timestamp_now():
-    epoch_1601 = datetime(1601, 1, 1, tzinfo=timezone.utc)
-    now = datetime.now(timezone.utc)
-    microseconds = int((now - epoch_1601).total_seconds() * 1_000_000)
-    return str(microseconds)
+    return [
+        ExtensionResultItem(
+            icon=item["icon"],
+            name=item["name"],
+            description=item["description"],
+            on_enter=item["on_enter"]
+        )
+        for item in items
+    ]
 
 
 def update_item_date(items, bookmark_id):
