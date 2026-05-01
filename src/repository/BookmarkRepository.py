@@ -38,8 +38,6 @@ class BookmarkRepository:
         ))
 
     def search_by_full_path(self, query, limit):
-        print(f"🌠 query: {query}")
-        print(f"🌠 limit: {limit}")
         self.cursor = self.conn.execute("""
             SELECT id, name, url, icon, full_path, last_used
             FROM bookmarks

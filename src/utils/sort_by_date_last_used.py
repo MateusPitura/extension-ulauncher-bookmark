@@ -1,4 +1,4 @@
-def sort_by_date_last_used(items):
+def sort_by_date_last_used(items): # 🌠 remove
     return sorted(
         items,
         key=lambda item: item.get("date_last_used", 0),

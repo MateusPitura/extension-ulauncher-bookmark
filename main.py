@@ -103,30 +103,26 @@ def get_favicon(url, event, extension):
     return "images/chrome.png"
 
 
-def append_url(items, item, event, extension):
-    keyword = event.get_keyword()
-
-    profile_path = get_profile_path(keyword, extension)
-
-    profile = os.path.basename(os.path.normpath(profile_path))
+def append_url(item, event, extension):
+    profile_name = item.get("full_path", "").split(" ")[0]
+    profile_path = get_profile_path(profile_name, extension)
+    profile_path_formatted = os.path.basename(os.path.normpath(profile_path))
 
     bookmark_name = item.get("name", "Unknown")
     bookmark_url = item.get("url", "www.example.com")
-    date_last_used = item.get("date_last_used", 0)
 
-    items.append({
+    return {
         "icon": get_favicon(bookmark_url, event, extension),
         "name": bookmark_name,
         "description": remove_url_prefix(bookmark_url),
         "on_enter": ExtensionCustomAction({
             "action": "open_bookmark",
-            "profile": profile,
+            "profile": profile_path_formatted,
             "url": bookmark_url,
             "id": item.get("id"),
             "profile_path": profile_path
         }, keep_app_open=False),
-        "date_last_used": date_last_used
-    })
+    }
 
 
 def clear_cache():
@@ -212,13 +208,10 @@ def get_bookmark_items(query="", event=None, extension=None):
     #                 append_url(url_items, item, event, extension)
 
     max_results = get_max_results(extension)
-    print(f"🌠 max_results: {max_results}")
 
     items = extension.repository.search_by_full_path(query, max_results)
-    print(f"🌠 items: {items}")
 
     profile_items = get_profiles_items(event, extension)
-    print(f"🌠 profile_items: {profile_items}")
 
     # url_items = sort_by_date_last_used(url_items)
 
@@ -226,12 +219,7 @@ def get_bookmark_items(query="", event=None, extension=None):
     print(f"🌠 items: {items}")
 
     return [
-        ExtensionResultItem(
-            icon=item["icon"],
-            name=item["name"],
-            description=item["description"],
-            on_enter=item["on_enter"]
-        )
+        ExtensionResultItem(append_url(item, event, extension))
         for item in items
     ]
 
