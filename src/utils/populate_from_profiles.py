@@ -1,4 +1,4 @@
-from parse_bookmarks import parse_bookmarks
+from .parse_bookmarks import parse_bookmarks
 import os
 import json
 
