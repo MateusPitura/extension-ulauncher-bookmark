@@ -2,10 +2,10 @@ from .parse_bookmarks import parse_bookmarks
 import os
 import json
 
-def populate_from_profiles(repository, extension):
-    profiles = extension.preferences.get("profiles", "")
+def populate_from_profiles(repository, preferences):
+    profiles = preferences.get("profiles", "")
     print(f"🌠 profiles: {profiles}")
-    base_path = extension.preferences.get("base_bookmark_path")
+    base_path = preferences.get("base_bookmark_path")
     print(f"🌠 base_path: {base_path}")
 
     for profile in profiles.split(";"):
