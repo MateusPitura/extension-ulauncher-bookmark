@@ -215,7 +215,7 @@ def get_bookmark_items(query="", event=None, extension=None):
 
     url_items = extension.repository.search_by_full_path(query, max_results)
 
-    url_items_formatted = [append_url(item) for item in url_items]
+    url_items_formatted = [append_url(item, event, extension) for item in url_items]
 
     profile_items = get_profiles_items(event, extension)
 
