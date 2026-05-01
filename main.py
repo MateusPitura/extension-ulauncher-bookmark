@@ -8,6 +8,8 @@ import shutil
 import sqlite3
 import subprocess
 from src.utils.get_profile_path import get_profile_path
+from src.utils.get_profiles_items import get_profiles_items
+from src.utils.sort_by_date_last_used import sort_by_date_last_used
 from datetime import datetime, timezone
 from ulauncher.api.client.Extension import Extension
 from ulauncher.api.client.EventListener import EventListener
@@ -29,7 +31,7 @@ class LunetaBrowserBookmark(Extension):
     def __init__(self):
         super(LunetaBrowserBookmark, self).__init__()
         self.subscribe(KeywordQueryEvent, KeywordQueryEventListener())
-        self.subscribe(ItemEnterEvent, BookmarkActionListener())
+        self.subscribe(ItemEnterEvent, ItemEnterEventListener())
         clear_cache()
 
 
@@ -57,14 +59,13 @@ def contains(a, b):
 def append_folder(items, item, base_path, event):
     keyword = event.get_keyword()
 
-    bookmark_name = item.get("name", "Unknown")
+    folder_name = item.get("name", "Unknown")
 
     items.append({
         "icon": "images/folder.png",
-        "name": bookmark_name,
+        "name": folder_name,
         "description": "Click to enter folder",
-        "on_enter": SetUserQueryAction(f"{keyword} {base_path}{bookmark_name}/"),
-        "type": "folder"
+        "on_enter": SetUserQueryAction(f"{keyword} {base_path}{folder_name}/")
     })
 
 
@@ -77,7 +78,6 @@ def get_favicon(url, event, extension):
 
     keyword = event.get_keyword()
     profile_path = get_profile_path(keyword, extension)
-    print(f"🌠 C profile_path: {profile_path}")
     favicon_path = os.path.expanduser(f"{profile_path.rstrip('/')}/Favicons")
 
     if not Path(favicon_path).exists():
@@ -114,7 +114,6 @@ def append_url(items, item, event, extension):
     keyword = event.get_keyword()
 
     profile_path = get_profile_path(keyword, extension)
-    print(f"🌠 B profile_path: {profile_path}")
 
     profile = os.path.basename(os.path.normpath(profile_path))
 
@@ -133,8 +132,7 @@ def append_url(items, item, event, extension):
             "id": item.get("id"),
             "profile_path": profile_path
         }, keep_app_open=False),
-        "date_last_used": date_last_used,
-        "type": "url"
+        "date_last_used": date_last_used
     })
 
 
@@ -142,26 +140,6 @@ def clear_cache():
     if os.path.exists(CACHE_DIR):
         shutil.rmtree(CACHE_DIR)
         os.makedirs(CACHE_DIR, exist_ok=True)
-
-
-def sort_items(items):
-    items_sorted = sorted(
-        items,
-        key=lambda item: (
-            item["type"] != "folder",
-            -int(item.get("date_last_used", 0))
-        )
-    )
-
-    return [
-        ExtensionResultItem(
-            icon=item["icon"],
-            name=item["name"],
-            description=item["description"],
-            on_enter=item["on_enter"]
-        )
-        for item in items_sorted
-    ]
 
 
 def get_bookmarks_path(profile_path):
@@ -175,7 +153,6 @@ def get_bookmark_items(query="", event=None, extension=None):
     keyword = event.get_keyword()
 
     profile_path = get_profile_path(keyword, extension)
-    print(f"🌠 A profile_path: {profile_path}")
 
     bookmarks_path = get_bookmarks_path(profile_path)
 
@@ -221,7 +198,8 @@ def get_bookmark_items(query="", event=None, extension=None):
             search_term = None
             base_path = ""
 
-    items = []
+    url_items = []
+    folder_items = []
     for item in node:
         item_type = item.get("type", "")
         bookmark_name = item.get("name", "Unknown")
@@ -229,25 +207,37 @@ def get_bookmark_items(query="", event=None, extension=None):
 
         if search_term is None:
             if item_type == "folder":
-                append_folder(items, item, base_path, event)
+                append_folder(folder_items, item, base_path, event)
             elif item_type == "url":
-                append_url(items, item, event, extension)
+                append_url(url_items, item, event, extension)
         else:
             if item_type == "folder":
                 if contains(bookmark_name, search_term):
-                    append_folder(items, item, base_path, event)
+                    append_folder(folder_items, item, base_path, event)
             elif item_type == "url":
                 if contains(bookmark_name, search_term) or contains(bookmark_url, search_term):
-                    append_url(items, item, event, extension)
+                    append_url(url_items, item, event, extension)
 
+    profile_items = get_profiles_items(event, extension)
+
+    url_items = sort_by_date_last_used(url_items)
+
+    items = profile_items + folder_items + url_items
+    
     max_results = extension.preferences.get("max_results")
-
-    items = sort_items(items)
 
     if max_results and max_results.isdigit():
         return items[:int(max_results)]
 
-    return items
+    return [
+        ExtensionResultItem(
+            icon=item["icon"],
+            name=item["name"],
+            description=item["description"],
+            on_enter=item["on_enter"]
+        )
+        for item in items
+    ]
 
 
 def google_timestamp_now():
@@ -299,7 +289,7 @@ def update_chrome_bookmark_date(
     return True
 
 
-class BookmarkActionListener(EventListener):
+class ItemEnterEventListener(EventListener):
 
     def on_event(self, event, extension):
         data = event.get_data()

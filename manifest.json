@@ -23,13 +23,6 @@
       "description": "Keyword to search in the default profile"
     },
     {
-      "id": "kw_default_path",
-      "type": "input",
-      "name": "Default profile path",
-      "default_value": "~/.config/google-chrome/Default/",
-      "description": "Path to the default profile"
-    },
-    {
       "id": "kw_1",
       "type": "keyword",
       "name": "Profile 1",
@@ -37,25 +30,11 @@
       "description": "Keyword to search in profile 1"
     },
     {
-      "id": "kw_1_path",
-      "type": "input",
-      "name": "Profile 1 path",
-      "default_value": "~/.config/google-chrome/Profile 1/",
-      "description": "Path to profile 1"
-    },
-    {
       "id": "kw_2",
       "type": "keyword",
       "name": "Profile 2",
       "default_value": "b2",
       "description": "Keyword to search in profile 2"
-    },
-    {
-      "id": "kw_2_path",
-      "type": "input",
-      "name": "Profile 2 path",
-      "default_value": "~/.config/google-chrome/Profile 2/",
-      "description": "Path to profile 2"
     },
     {
       "id": "max_results",
