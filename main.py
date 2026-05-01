@@ -102,11 +102,6 @@ def clear_cache():
         os.makedirs(CACHE_DIR, exist_ok=True)
 
 
-def get_bookmarks_path(profile_path):
-    return os.path.expanduser(
-        f"{profile_path.rstrip('/')}/Bookmarks")
-
-
 def get_bookmark_items(query="", event=None, extension=None):
     query = normalize_string(query.strip())
 
@@ -134,48 +129,6 @@ def get_bookmark_items(query="", event=None, extension=None):
     ]
 
 
-def update_item_date(items, bookmark_id):
-    for item in items:
-        if item.get("id") == bookmark_id:
-            item["date_last_used"] = google_timestamp_now()
-            return True
-
-        if item.get("type") == "folder":
-            children = item.get("children", [])
-            if update_item_date(children, bookmark_id):
-                return True
-
-    return False
-
-
-def update_chrome_bookmark_date(
-    bookmarks_path,
-    bookmark_id,
-    extension
-):
-    with open(bookmarks_path, "r", encoding="utf-8") as f:
-        data = json.load(f)
-
-    base_bookmark_path = extension.preferences.get("base_bookmark_path")
-
-    children = data.get("roots", {}).get(
-        base_bookmark_path, {}).get("children", [])
-
-    updated = update_item_date(children, bookmark_id)
-    if not updated:
-        return False
-
-    dir_name = os.path.dirname(bookmarks_path)
-    with tempfile.NamedTemporaryFile(
-        "w", encoding="utf-8", dir=dir_name, delete=False
-    ) as tmp:
-        json.dump(data, tmp, ensure_ascii=False)
-        tmp_path = tmp.name
-
-    os.replace(tmp_path, bookmarks_path)
-    return True
-
-
 class ItemEnterEventListener(EventListener):
     def on_event(self, event, extension):
         data = event.get_data()
@@ -183,19 +136,11 @@ class ItemEnterEventListener(EventListener):
         if data.get("action") != "open_bookmark":
             return
 
-        profile = data["profile"]
+        profile = data["profile_path"]
         url = data["url"]
         bookmark_id = data.get("id")
-        profile_path = data.get("profile_path")
 
-        bookmarks_path = get_bookmarks_path(profile_path)
-
-        if extension.preferences.get("update_last_used") == "true":
-            update_chrome_bookmark_date(
-                bookmarks_path,
-                bookmark_id,
-                extension
-            )
+        extension.repository.update_last_used_by_id(bookmark_id, google_timestamp_now())
 
         subprocess.Popen([
             "google-chrome",

@@ -47,3 +47,12 @@ class BookmarkRepository:
         """, (f"%{query}%", limit))
 
         return [dict(row) for row in self.cursor.fetchall()]
+    
+    def update_last_used_by_id(self, item_id, last_used):
+        self.conn.execute("""
+            UPDATE bookmarks
+            SET last_used = ?
+            WHERE id = ?
+        """, (last_used, item_id))
+
+        self.conn.commit()

@@ -6,23 +6,21 @@ from .remove_url_prefix import remove_url_prefix
 
 def get_url_item(item, event, extension):
     profile_name = item.get("full_path", "").split(" ")[0]
-    profile_path = get_profile_path(profile_name, extension)
-    profile_path_formatted = os.path.basename(os.path.normpath(profile_path))
+    profile_path = os.path.basename(os.path.normpath(get_profile_path(profile_name, extension)))
 
     bookmark_name = item.get("name", "Unknown")
     bookmark_url = item.get("url", "www.example.com")
 
     return {
-        "icon": "",  # 🌠 improve it
+        "icon": "", # get_favicon(bookmark_url, event, extension), # 🌠 improve it
         "name": bookmark_name,
         "description": remove_url_prefix(bookmark_url),
         "on_enter": ExtensionCustomAction(
             {
                 "action": "open_bookmark",
-                "profile": profile_path_formatted,
+                "profile_path": profile_path,
                 "url": bookmark_url,
                 "id": item.get("id"),
-                "profile_path": profile_path
             }, 
             keep_app_open=False
         ),
