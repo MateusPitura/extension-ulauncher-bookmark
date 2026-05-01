@@ -77,6 +77,7 @@ def get_favicon(url, event, extension):
 
     keyword = event.get_keyword()
     profile_path = extension.preferences.get(get_profile_path(keyword, extension))
+    print(f"🌠 C profile_path: {profile_path}")
     favicon_path = os.path.expanduser(f"{profile_path.rstrip('/')}/Favicons")
 
     if not Path(favicon_path).exists():
@@ -113,6 +114,7 @@ def append_url(items, item, event, extension):
     keyword = event.get_keyword()
 
     profile_path = extension.preferences.get(get_profile_path(keyword, extension))
+    print(f"🌠 B profile_path: {profile_path}")
 
     profile = os.path.basename(os.path.normpath(profile_path))
 
@@ -173,6 +175,7 @@ def get_bookmark_items(query="", event=None, extension=None):
     keyword = event.get_keyword()
 
     profile_path = extension.preferences.get(get_profile_path(keyword, extension))
+    print(f"🌠 A profile_path: {profile_path}")
 
     bookmarks_path = get_bookmarks_path(profile_path)
 
@@ -338,7 +341,7 @@ class KeywordQueryEventListener(EventListener):
         except Exception as e:
             items.append(ExtensionResultItem(
                 icon="images/logo.png",
-                name="Error reading bookmarks",
+                name="Luneta Browser Bookmark",
                 description=str(e)
             ))
 
