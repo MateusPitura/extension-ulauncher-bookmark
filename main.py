@@ -225,7 +225,12 @@ def get_bookmark_items(query="", event=None, extension=None):
     print(f"🌠 items: {items}")
 
     return [
-        ExtensionResultItem(item)
+        ExtensionResultItem(
+            icon=item["icon"],
+            name=item["name"],
+            description=item["description"],
+            on_enter=item["on_enter"]
+        )
         for item in items
     ]
 
