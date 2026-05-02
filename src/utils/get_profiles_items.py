@@ -11,8 +11,8 @@ def get_profiles_items(event, extension):
 
             profiles_names.append({
                 "icon": "images/logo.png", # 🌠 try to get profile picture
-                "name": f"{name.strip()} ",
+                "name": name.strip(),
                 "description": "Click to filter by this profile",
-                "on_enter": SetUserQueryAction(f"{keyword} {name.strip()}"),
+                "on_enter": SetUserQueryAction(f"{keyword} {name.strip()} "),
             })
     return profiles_names
