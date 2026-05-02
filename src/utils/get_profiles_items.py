@@ -1,4 +1,3 @@
-import os
 from src.utils.get_profile_path import get_profile_path
 from ulauncher.api.shared.action.SetUserQueryAction import SetUserQueryAction
 
