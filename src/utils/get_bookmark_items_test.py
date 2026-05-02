@@ -281,7 +281,7 @@ def test_show_profiles_empty_query(before_all):
         repository
     )
 
-    assert result[0]["name"] == "personal"
+    assert result[0]["name"] == "personal2"
     assert result[0]["description"] == "Click to filter by this profile"
 
     assert result[1]["name"] == "work"
