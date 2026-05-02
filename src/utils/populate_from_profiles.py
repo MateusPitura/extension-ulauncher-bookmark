@@ -5,7 +5,7 @@ from src.utils.normalize_path import normalize_path
 
 
 def populate_from_profiles(repository, preferences):
-    profiles = preferences.utils.get("profiles", "")
+    profiles = preferences.get("profiles", "")
     base_path = preferences.get("base_bookmark_path")
 
     for profile in profiles.split(";"):
