@@ -5,7 +5,7 @@ from .get_favicon import get_favicon
 from .remove_url_prefix import remove_url_prefix
 
 def get_url_item(item, extension):
-    profile_name = item.get("full_path", "").split(" ")[0].strip() # 🌠 improve this
+    profile_name = item.get("full_path", "").split(" ")[0].strip()
     profile_path = get_profile_path(profile_name, extension)
     chrome_profile = os.path.basename(profile_path)
 

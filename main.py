@@ -47,7 +47,7 @@ def append_folder(items, item, base_path, event):
     })
 
 
-def get_bookmark_items(query="", event=None, extension=None):
+def get_bookmark_items(query, event, extension):
     query = normalize_string(query.strip())
 
     max_results = get_max_results(extension)
