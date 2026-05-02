@@ -54,7 +54,7 @@ def get_bookmark_items(query="", event=None, extension=None):
 
     url_items = extension.repository.search_by_full_path(query, max_results)
 
-    url_items_formatted = [get_url_item(item, event, extension) for item in url_items]
+    url_items_formatted = [get_url_item(item, extension) for item in url_items]
 
     profile_items = get_profiles_items(event, extension)
 
@@ -81,7 +81,7 @@ class ItemEnterEventListener(EventListener):
         if data.get("action") != "open_bookmark":
             return
 
-        profile = data["profile_path"]
+        chrome_profile = data["chrome_profile"]
         url = data["url"]
         bookmark_id = data.get("id")
 
@@ -89,7 +89,7 @@ class ItemEnterEventListener(EventListener):
 
         subprocess.Popen([
             "google-chrome",
-            f"--profile-directory={profile}",
+            f"--profile-directory={chrome_profile}",
             url
         ])
 

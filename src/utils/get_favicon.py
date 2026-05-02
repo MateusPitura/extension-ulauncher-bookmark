@@ -3,20 +3,17 @@ import hashlib
 import tempfile
 import sqlite3
 import os
-from .get_profile_path import get_profile_path
 import shutil
 from .constants import CACHE_DIR
 
-def get_favicon(url, event, extension):
+def get_favicon(url, profile_path):
     safe_name = hashlib.md5(url.encode()).hexdigest()
     cache_file = os.path.join(CACHE_DIR, f"{safe_name}.png")
 
     if os.path.exists(cache_file):
         return cache_file
 
-    keyword = event.get_keyword()
-    profile_path = get_profile_path(keyword, extension)
-    favicon_path = os.path.expanduser(f"{profile_path.rstrip('/')}/Favicons")
+    favicon_path = os.path.expanduser(f"{profile_path}/Favicons")
 
     if not Path(favicon_path).exists():
         return "images/chrome.png" # 🌠 create a const for this path

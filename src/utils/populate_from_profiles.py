@@ -10,9 +10,9 @@ def populate_from_profiles(repository, preferences):
         if "=" not in profile:
             continue
 
-        profile_name, profile_path = profile.split("=", 1)
+        profile_name, profile_path = profile.split("=", 1) # 🌠 improve this
         profile_name = profile_name.strip()
-        profile_path = os.path.expanduser(profile_path.strip())
+        profile_path = os.path.expanduser(os.path.normpath(profile_path.strip()))
 
         bookmarks_file = os.path.join(profile_path, "Bookmarks")
 
