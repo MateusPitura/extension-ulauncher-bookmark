@@ -56,11 +56,11 @@ class BookmarkRepository:
         """, (name, full_path, last_used, profile))
 
     def search_by_url(self, query, profile, limit):
-        self.cursor = self.conn.execute("""
+        self.cursor = self.conn.execute(f"""
             SELECT id, name, url, full_path, last_used
             FROM bookmarks
             WHERE full_path LIKE ?
-            AND profile = ?
+            {'AND profile = ?' if profile else ''}
             ORDER BY last_used DESC
             LIMIT ?
         """, (f"%{query}%", profile, limit))
@@ -68,11 +68,11 @@ class BookmarkRepository:
         return [dict(row) for row in self.cursor.fetchall()]
     
     def search_by_folder(self, query, profile, limit):
-        self.cursor = self.conn.execute("""
+        self.cursor = self.conn.execute(f"""
             SELECT id, name, full_path, last_used
             FROM folders
             WHERE full_path LIKE ?
-            AND profile = ?
+            {'AND profile = ?' if profile else ''}
             ORDER BY last_used DESC
             LIMIT ?
         """, (f"%{query}%", profile, limit))
