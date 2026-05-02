@@ -34,7 +34,7 @@ class LunetaBrowserBookmark(Extension):
         clear_cache()
 
 
-def get_folder_item(item, base_path, event):
+def get_folder_item(item, event):
     keyword = event.get_keyword()
 
     folder_name = item.get("name", "Unknown")
