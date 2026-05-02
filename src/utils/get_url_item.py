@@ -24,7 +24,7 @@ def format_description(full_path, url):
 def get_url_item(item, extension):
     full_path = item.get("full_path", "")
 
-    profile_name = split_string(full_path)[0]
+    profile_name = item.get("profile", "")
     profile_path = get_profile_path(profile_name, extension)
     chrome_profile = os.path.basename(profile_path)
 

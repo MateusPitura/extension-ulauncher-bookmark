@@ -58,7 +58,7 @@ class BookmarkRepository:
     def search_by_url(self, query, profile, limit, profiles):
         if(profile in profiles):
             self.cursor = self.conn.execute("""
-                SELECT id, name, url, full_path, last_used
+                SELECT id, name, url, full_path, last_used, profile
                 FROM bookmarks
                 WHERE full_path LIKE ?
                 AND profile = ?
@@ -67,7 +67,7 @@ class BookmarkRepository:
             """, (f"%{query}%", profile, limit))
         else:
             self.cursor = self.conn.execute("""
-                SELECT id, name, url, full_path, last_used
+                SELECT id, name, url, full_path, last_used, profile
                 FROM bookmarks
                 WHERE full_path LIKE ?
                 ORDER BY last_used DESC
@@ -80,7 +80,7 @@ class BookmarkRepository:
     def search_by_folder(self, query, profile, limit, profiles):
         if(profile in profiles):
             self.cursor = self.conn.execute("""
-                SELECT id, name, full_path, last_used
+                SELECT id, name, full_path, last_used, profile
                 FROM folders
                 WHERE full_path LIKE ?
                 AND profile = ?
@@ -89,7 +89,7 @@ class BookmarkRepository:
             """, (f"%{query}%", profile, limit))
         else:
             self.cursor = self.conn.execute("""
-                SELECT id, name, full_path, last_used
+                SELECT id, name, full_path, last_used, profile
                 FROM folders
                 WHERE full_path LIKE ?
                 ORDER BY last_used DESC
