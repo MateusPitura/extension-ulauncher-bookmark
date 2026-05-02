@@ -52,14 +52,15 @@ class BookmarkRepository:
             VALUES (?, ?, ?)
         """, (name, full_path, last_used))
 
-    def search_by_url(self, query, limit):
+    def search_by_url(self, query, profile, limit):
         self.cursor = self.conn.execute("""
             SELECT id, name, url, full_path, last_used
             FROM bookmarks
             WHERE full_path LIKE ?
+            WHERE profile = ?
             ORDER BY last_used DESC
             LIMIT ?
-        """, (f"%{query}%", limit))
+        """, (f"%{query}%", profile, limit))
 
         return [dict(row) for row in self.cursor.fetchall()]
     

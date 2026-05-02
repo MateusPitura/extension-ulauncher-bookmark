@@ -6,8 +6,6 @@ def get_folder_item(item, event):
     folder_name = item.get("name", "Unknown")
     full_path = item.get("full_path", "")
 
-    profile_name = full_path.split(" ")[0].strip()
-
     return {
         "icon": "images/folder.png",
         "name": folder_name,

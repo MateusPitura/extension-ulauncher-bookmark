@@ -3,16 +3,17 @@ from .get_profile_path import get_profile_path
 import os
 from .get_favicon import get_favicon
 from .remove_url_prefix import remove_url_prefix
+from .split_string import split_string
 
 def remove_last_part(path):
     parts = path.split("/")
     return "/".join(parts[:-1])
 
 def format_description(full_path, url):
-    profile, path = full_path.split(" ", 1)
-    path = remove_last_part(path.strip())
+    profile, path = split_string(full_path)
+    path = remove_last_part(path)
 
-    prefix = f"({profile.strip()})"
+    prefix = f"({profile})"
 
     if path:
         prefix += f" {path}"
@@ -23,7 +24,7 @@ def format_description(full_path, url):
 def get_url_item(item, extension):
     full_path = item.get("full_path", "")
 
-    profile_name = full_path.split(" ")[0].strip()
+    profile_name = split_string(full_path)[0]
     profile_path = get_profile_path(profile_name, extension)
     chrome_profile = os.path.basename(profile_path)
 

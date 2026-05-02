@@ -18,6 +18,7 @@ from ulauncher.api.shared.event import PreferencesEvent
 from src.utils.constants import CACHE_DIR
 from src.utils.clear_favicon_cache import clear_cache
 from src.utils.get_folder_item import get_folder_item
+from src.utils.split_string import split_string
 
 
 class LunetaBrowserBookmark(Extension):
@@ -39,15 +40,15 @@ def get_bookmark_items(query, event, extension):
 
     max_results = get_max_results(extension)
 
-    url_items = extension.repository.search_by_url(query, max_results)
+    profile_name = split_string(query)[0]
+
+    url_items = extension.repository.search_by_url(query, profile_name, max_results)
 
     folder_items = extension.repository.search_by_folder(query, max_results)
-    print(f"🌠 folder_items: {folder_items}")
 
     url_items_formatted = [get_url_item(item, extension) for item in url_items]
 
     folder_items_formatted = [get_folder_item(item, event) for item in folder_items]
-    print(f"🌠 folder_items_formatted: {folder_items_formatted}")
 
     items = folder_items_formatted + url_items_formatted
     if query == "":
