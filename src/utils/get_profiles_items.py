@@ -12,10 +12,9 @@ def get_profiles_items(keyword, preferences):
             name = profile.split("=", 1)[0].strip()
 
             profile_path = get_profile_path(name, preferences)
-            chrome_profile = os.path.basename(profile_path)
 
             profiles_names.append({
-                "icon": f"{chrome_profile}/Google Profile Picture.png",
+                "icon": f"{profile_path}/Google Profile Picture.png",
                 "name": name.strip(),
                 "description": "Click to filter by this profile",
                 "on_enter": SetUserQueryAction(f"{keyword} {name.strip()} "),
