@@ -9,9 +9,9 @@ def remove_last_part(path):
     return "/".join(parts[:-1])
 
 def format_description(full_path, url):
-    profile, path = full_path.split(" ", 1).strip()
-    path = remove_last_part(path)
-    return f"({profile}) {path} • {remove_url_prefix(url)}"
+    profile, path = full_path.split(" ", 1)
+    path = remove_last_part(path.strip())
+    return f"({profile.strip()}) {path} • {remove_url_prefix(url)}"
 
 
 def get_url_item(item, extension):
