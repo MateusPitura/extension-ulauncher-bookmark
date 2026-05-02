@@ -34,17 +34,18 @@ class LunetaBrowserBookmark(Extension):
         clear_cache()
 
 
-def append_folder(items, item, base_path, event):
+def get_folder_item(item, base_path, event):
     keyword = event.get_keyword()
 
     folder_name = item.get("name", "Unknown")
+    full_path = item.get("full_path", "")
 
-    items.append({
+    return {
         "icon": "images/folder.png",
         "name": folder_name,
         "description": "Click to filter by this folder",
-        "on_enter": SetUserQueryAction(f"{keyword} {base_path}{folder_name}/")
-    })
+        "on_enter": SetUserQueryAction(f"{keyword} {full_path}/")
+    }
 
 
 def get_bookmark_items(query, event, extension):
@@ -52,15 +53,18 @@ def get_bookmark_items(query, event, extension):
 
     max_results = get_max_results(extension)
 
-    url_items = extension.repository.search_by_full_path(query, max_results)
+    url_items = extension.repository.search_by_url(query, max_results)
+
+    folder_items = extension.repository.search_by_folder(query, max_results)
 
     url_items_formatted = [get_url_item(item, extension) for item in url_items]
 
+    folder_items_formatted = [get_folder_item(item, extension) for item in url_items]
+
+    items = url_items_formatted + folder_items_formatted
     if query == "":
         profile_items = get_profiles_items(event, extension)
-        items = profile_items + url_items_formatted
-    else:
-        items = url_items_formatted
+        items = profile_items + items
 
     return [
         ExtensionResultItem(
@@ -69,7 +73,7 @@ def get_bookmark_items(query, event, extension):
             description=item["description"],
             on_enter=item["on_enter"]
         )
-        for item in items[:max_results] # also limit to max results because the final result is items from database (already limited) with profile_items
+        for item in items[:max_results]
     ]
 
 
