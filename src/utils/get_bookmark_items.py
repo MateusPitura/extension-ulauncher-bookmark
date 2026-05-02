@@ -19,13 +19,11 @@ def get_bookmark_items(query, keyword, preferences, repository):
         rest_query, profile_name, max_results,
         get_profile_names(preferences)
     )
-    print(f"🌠 url_items: {url_items}")
 
     folder_items = repository.search_by_folder(
         rest_query, profile_name, max_results,
         get_profile_names(preferences)
     )
-    print(f"🌠 folder_items: {folder_items}")
 
     url_items_formatted = [get_url_item(item, preferences) for item in url_items]
 

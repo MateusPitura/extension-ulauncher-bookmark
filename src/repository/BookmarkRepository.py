@@ -57,9 +57,7 @@ class BookmarkRepository:
         """, (name, full_path, last_used, profile))
 
     def search_by_url(self, query, profile, limit, profiles):
-        print(f"🌠 profiles: {profiles}")
         if profile in profiles:
-            print(f"if url")
             self.cursor = self.conn.execute("""
                 SELECT id, name, url, full_path, last_used, profile
                 FROM bookmarks
@@ -69,7 +67,6 @@ class BookmarkRepository:
                 LIMIT ?
             """, (f"%{query}%", profile, limit))
         else:
-            print("🌠 else url")
             self.cursor = self.conn.execute("""
                 SELECT id, name, url, full_path, last_used, profile
                 FROM bookmarks
@@ -81,9 +78,7 @@ class BookmarkRepository:
         return [dict(row) for row in self.cursor.fetchall()]
 
     def search_by_folder(self, query, profile, limit, profiles):
-        print(f"🌠 profiles: {profiles}")
         if profile in profiles:
-            print(f"🌠 if folder")
             self.cursor = self.conn.execute("""
                 SELECT id, name, full_path, last_used, profile
                 FROM folders
@@ -93,7 +88,6 @@ class BookmarkRepository:
                 LIMIT ?
             """, (f"%{query}%", profile, limit))
         else:
-            print(f"🌠 else folder")
             self.cursor = self.conn.execute("""
                 SELECT id, name, full_path, last_used, profile
                 FROM folders
