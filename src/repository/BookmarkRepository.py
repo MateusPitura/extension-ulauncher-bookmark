@@ -57,7 +57,7 @@ class BookmarkRepository:
             SELECT id, name, url, full_path, last_used
             FROM bookmarks
             WHERE full_path LIKE ?
-            WHERE profile = ?
+            AND profile = ?
             ORDER BY last_used DESC
             LIMIT ?
         """, (f"%{query}%", profile, limit))
