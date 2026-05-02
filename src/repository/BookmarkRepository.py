@@ -74,7 +74,7 @@ class BookmarkRepository:
 
         return [dict(row) for row in self.cursor.fetchall()]
     
-    def update_last_used_by_id(self, item_id, last_used):
+    def update_url_last_used_by_id(self, item_id, last_used):
         self.conn.execute("""
             UPDATE bookmarks
             SET last_used = ?
@@ -83,7 +83,7 @@ class BookmarkRepository:
 
         self.conn.commit()
 
-    def update_last_used_by_id(self, item_id, last_used):
+    def update_folder_last_used_by_id(self, item_id, last_used):
         self.conn.execute("""
             UPDATE folders
             SET last_used = ?

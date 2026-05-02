@@ -10,7 +10,7 @@ def get_folder_item(item, event):
 
     return {
         "icon": "images/folder.png",
-        "name": f"({profile_name}) • {folder_name}",
+        "name": folder_name,
         "description": "Click to filter by this folder",
         "on_enter": SetUserQueryAction(f"{keyword} {full_path}/")
     }

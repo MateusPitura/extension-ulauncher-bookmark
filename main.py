@@ -76,7 +76,7 @@ class ItemEnterEventListener(EventListener):
         url = data["url"]
         bookmark_id = data.get("id")
 
-        extension.repository.update_last_used_by_id(bookmark_id, google_timestamp_now())
+        extension.repository.update_url_last_used_by_id(bookmark_id, google_timestamp_now())
 
         subprocess.Popen([
             "google-chrome",
