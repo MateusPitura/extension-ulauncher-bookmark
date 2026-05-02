@@ -55,8 +55,8 @@ class BookmarkRepository:
             VALUES (?, ?, ?, ?)
         """, (name, full_path, last_used, profile))
 
-    def search_by_url(self, query, profile, limit):
-        if(profile):
+    def search_by_url(self, query, profile, limit, profiles):
+        if(profile in profiles):
             self.cursor = self.conn.execute("""
                 SELECT id, name, url, full_path, last_used
                 FROM bookmarks
@@ -77,8 +77,8 @@ class BookmarkRepository:
 
         return [dict(row) for row in self.cursor.fetchall()]
     
-    def search_by_folder(self, query, profile, limit):
-        if(profile):
+    def search_by_folder(self, query, profile, limit, profiles):
+        if(profile in profiles):
             self.cursor = self.conn.execute("""
                 SELECT id, name, full_path, last_used
                 FROM folders

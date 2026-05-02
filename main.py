@@ -19,6 +19,7 @@ from src.utils.constants import CACHE_DIR
 from src.utils.clear_favicon_cache import clear_cache
 from src.utils.get_folder_item import get_folder_item
 from src.utils.split_string import split_string
+from src.utils.get_profiles_items import get_profiles_items
 
 
 class LunetaBrowserBookmark(Extension):
@@ -42,9 +43,9 @@ def get_bookmark_items(query, event, extension):
 
     profile_name, rest_query = split_string(query)
 
-    url_items = extension.repository.search_by_url(rest_query, profile_name, max_results)
+    url_items = extension.repository.search_by_url(rest_query, profile_name, max_results, get_profiles_items(extension))
 
-    folder_items = extension.repository.search_by_folder(rest_query, profile_name, max_results)
+    folder_items = extension.repository.search_by_folder(rest_query, profile_name, max_results, get_profiles_items(extension))
 
     url_items_formatted = [get_url_item(item, extension) for item in url_items]
 
