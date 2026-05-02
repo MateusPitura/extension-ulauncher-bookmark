@@ -15,7 +15,6 @@ class BookmarkRepository:
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             name TEXT,
             url TEXT,
-            icon TEXT,
             full_path TEXT,
             last_used INTEGER
         )
@@ -25,21 +24,20 @@ class BookmarkRepository:
 
         self.conn.commit()
 
-    def insert_bookmark(self, name, url, icon, full_path, last_used):
+    def insert_bookmark(self, name, url, full_path, last_used):
         self.cursor.execute("""
-            INSERT OR REPLACE INTO bookmarks (name, url, icon, full_path, last_used)
+            INSERT OR REPLACE INTO bookmarks (name, url, full_path, last_used)
             VALUES (?, ?, ?, ?, ?)
         """, (
             name,
             url,
-            icon,
             full_path,
             last_used
         ))
 
     def search_by_full_path(self, query, limit):
         self.cursor = self.conn.execute("""
-            SELECT id, name, url, icon, full_path, last_used
+            SELECT id, name, url, full_path, last_used
             FROM bookmarks
             WHERE full_path LIKE ?
             ORDER BY last_used DESC

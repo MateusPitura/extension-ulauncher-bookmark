@@ -56,9 +56,8 @@ def get_bookmark_items(query="", event=None, extension=None):
 
     url_items_formatted = [get_url_item(item, extension) for item in url_items]
 
-    profile_items = get_profiles_items(event, extension)
-
     if query == "":
+        profile_items = get_profiles_items(event, extension)
         items = profile_items + url_items_formatted
     else:
         items = url_items_formatted
@@ -70,7 +69,7 @@ def get_bookmark_items(query="", event=None, extension=None):
             description=item["description"],
             on_enter=item["on_enter"]
         )
-        for item in items
+        for item in items[:max_results] # also get max results because the final result is items from database (already limit) with profile_items
     ]
 
 

@@ -1,6 +1,7 @@
 from .parse_bookmarks import parse_bookmarks
 import os
 import json
+from .normalize_path import normalize_path
 
 def populate_from_profiles(repository, preferences):
     profiles = preferences.get("profiles", "")
@@ -10,9 +11,9 @@ def populate_from_profiles(repository, preferences):
         if "=" not in profile:
             continue
 
-        profile_name, profile_path = profile.split("=", 1) # 🌠 improve this
+        profile_name, profile_path = profile.split("=", 1)
         profile_name = profile_name.strip()
-        profile_path = os.path.expanduser(os.path.normpath(profile_path.strip()))
+        profile_path = os.path.expanduser(normalize_path(profile_path))
 
         bookmarks_file = os.path.join(profile_path, "Bookmarks")
 

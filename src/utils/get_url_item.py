@@ -6,14 +6,14 @@ from .remove_url_prefix import remove_url_prefix
 
 def get_url_item(item, extension):
     profile_name = item.get("full_path", "").split(" ")[0].strip() # 🌠 improve this
-    normalized_profile_name = os.path.normpath(get_profile_path(profile_name, extension))
-    chrome_profile = os.path.basename(normalized_profile_name)
+    profile_path = get_profile_path(profile_name, extension)
+    chrome_profile = os.path.basename(profile_path)
 
     bookmark_name = item.get("name", "Unknown")
     bookmark_url = item.get("url", "www.example.com")
 
     return {
-        "icon": get_favicon(bookmark_url, normalized_profile_name),
+        "icon": get_favicon(bookmark_url, profile_path),
         "name": bookmark_name,
         "description": remove_url_prefix(bookmark_url),
         "on_enter": ExtensionCustomAction(
