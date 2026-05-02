@@ -36,7 +36,7 @@ class BookmarkRepository:
 
         self.conn.commit()
 
-    def insert_bookmark(self, name, url, full_path, last_used):
+    def insert_bookmark(self, name, url, full_path, last_used, profile):
         self.cursor.execute("""
             INSERT OR REPLACE INTO bookmarks (name, url, full_path, last_used, profile)
             VALUES (?, ?, ?, ?, ?)
@@ -44,7 +44,8 @@ class BookmarkRepository:
             name,
             url,
             full_path,
-            last_used
+            last_used,
+            profile
         ))
     
     def insert_folder(self, name, full_path, last_used):
