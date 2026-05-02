@@ -25,8 +25,7 @@ class BookmarkRepository:
         CREATE TABLE IF NOT EXISTS folders (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             name TEXT,
-            full_path TEXT,
-            last_used INTEGER
+            full_path TEXT
         )
         """)
 
@@ -47,11 +46,11 @@ class BookmarkRepository:
             last_used
         ))
 
-    def insert_folder(self, name, full_path, last_used):
+    def insert_folder(self, name, full_path):
         self.conn.execute("""
-            INSERT INTO folders (name, full_path, last_used)
-            VALUES (?, ?, ?)
-        """, (name, full_path, last_used))
+            INSERT INTO folders (name, full_path)
+            VALUES (?, ?)
+        """, (name, full_path))
 
     def search_by_url(self, query, limit):
         self.cursor = self.conn.execute("""
@@ -66,7 +65,7 @@ class BookmarkRepository:
 
     def search_by_folder(self, query, limit):
         self.cursor = self.conn.execute("""
-            SELECT id, name, full_path, last_used
+            SELECT id, name, full_path
             FROM folders
             WHERE full_path LIKE ?
             ORDER BY last_used DESC
@@ -78,15 +77,6 @@ class BookmarkRepository:
     def update_url_last_used_by_id(self, item_id, last_used):
         self.conn.execute("""
             UPDATE bookmarks
-            SET last_used = ?
-            WHERE id = ?
-        """, (last_used, item_id))
-
-        self.conn.commit()
-
-    def update_folder_last_used_by_id(self, item_id, last_used): # 🌠 not implemented
-        self.conn.execute("""
-            UPDATE folders
             SET last_used = ?
             WHERE id = ?
         """, (last_used, item_id))

@@ -37,10 +37,11 @@ def get_bookmark_items(query, keyword, preferences, repository):
             continue
         folder_items_formatted.append(get_folder_item(item, keyword))
 
-    items = folder_items_formatted + url_items_formatted
     if query == "%%":
         profile_items = get_profiles_items(keyword, preferences)
-        items = profile_items + items
+        items = profile_items + url_items_formatted
+    else:
+        items = folder_items_formatted + url_items_formatted
 
     return [
         ExtensionResultItem(
