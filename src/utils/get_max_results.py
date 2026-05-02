@@ -1,6 +1,3 @@
-from ulauncher.api.shared.item.ExtensionResultItem import ExtensionResultItem
-
-
 def get_max_results(extension):
     max_results = extension.preferences.get("max_results")
 

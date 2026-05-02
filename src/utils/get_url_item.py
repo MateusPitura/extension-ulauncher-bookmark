@@ -1,6 +1,6 @@
+import os
 from ulauncher.api.shared.action.ExtensionCustomAction import ExtensionCustomAction
 from src.utils.get_profile_path import get_profile_path
-import os
 from src.utils.get_favicon import get_favicon
 from src.utils.remove_url_prefix import remove_url_prefix
 from src.utils.split_string import split_string
