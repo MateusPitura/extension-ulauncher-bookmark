@@ -40,9 +40,9 @@ def get_bookmark_items(query, event, extension):
 
     max_results = get_max_results(extension)
 
-    profile_name = split_string(query)[0]
+    profile_name, rest_query = split_string(query)
 
-    url_items = extension.repository.search_by_url(query, profile_name, max_results)
+    url_items = extension.repository.search_by_url(rest_query, profile_name, max_results)
 
     folder_items = extension.repository.search_by_folder(query, max_results)
 
