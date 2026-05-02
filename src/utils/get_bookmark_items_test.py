@@ -199,7 +199,6 @@ def test_show_subfolders(before_all):
         repository
     )
 
-    print(f"🌠 result: {result}")
     count_folders = sum(1 for item in result if item["description"] == "Click to filter by this folder")
     assert count_folders == 5
 
@@ -214,7 +213,6 @@ def test_search_subfolder(before_all):
         repository
     )
 
-    print(f"🌠 result: {result}")
     assert result[0]["name"] == "Azure Functions"
     assert result[0]["description"] == "Click to filter by this folder"
 
@@ -255,7 +253,6 @@ def test_search_subfolder_without_profile(before_all):
         repository
     )
 
-    print(f"🌠 result: {result}")
     assert result[0]["name"] == "Azure Functions"
     assert result[0]["description"] == "Click to filter by this folder"
 

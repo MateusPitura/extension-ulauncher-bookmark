@@ -68,7 +68,6 @@ class KeywordQueryEventListener(EventListener):
             )
 
         except Exception as e:
-            print("🌠 error", e)
             items.append(ExtensionResultItem(
                 icon="images/logo.png",
                 name="Luneta Browser Bookmark",
