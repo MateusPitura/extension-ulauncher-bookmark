@@ -59,7 +59,7 @@ def get_bookmark_items(query, event, extension):
 
     url_items_formatted = [get_url_item(item, extension) for item in url_items]
 
-    folder_items_formatted = [get_folder_item(item, extension) for item in url_items]
+    folder_items_formatted = [get_folder_item(item, event) for item in folder_items]
 
     items = url_items_formatted + folder_items_formatted
     if query == "":
