@@ -4,8 +4,6 @@ from src.utils.get_max_results import get_max_results
 from src.utils.get_url_item import get_url_item
 from src.utils.normalize_string import normalize_string
 from src.utils.get_folder_item import get_folder_item
-from src.utils.split_string import split_string
-from src.utils.get_profile_names import get_profile_names
 
 
 def get_bookmark_items(query, keyword, preferences, repository):
@@ -13,17 +11,9 @@ def get_bookmark_items(query, keyword, preferences, repository):
 
     max_results = get_max_results(preferences)
 
-    profile_name, rest_query = split_string(query)
+    url_items = repository.search_by_url(query, max_results,)
 
-    url_items = repository.search_by_url(
-        rest_query, profile_name, max_results,
-        get_profile_names(preferences)
-    )
-
-    folder_items = repository.search_by_folder(
-        rest_query, profile_name, max_results,
-        get_profile_names(preferences)
-    )
+    folder_items = repository.search_by_folder(query, max_results)
 
     url_items_formatted = [get_url_item(item, preferences) for item in url_items]
 

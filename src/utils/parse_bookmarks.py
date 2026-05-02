@@ -12,9 +12,8 @@ def parse_bookmarks(repository, node, profile_name, current_path):
 
             repository.insert_folder(
                 name=child["name"],
-                full_path=normalize_string(new_path),
+                full_path=normalize_string(f"{profile_name} {new_path}"),
                 last_used=child.get('date_last_used', google_timestamp_now()),
-                profile=profile_name
             )
 
             parse_bookmarks(
@@ -26,9 +25,9 @@ def parse_bookmarks(repository, node, profile_name, current_path):
 
         elif child["type"] == "url":
             full_path = (
-                f"{current_path}/{child['name']}"
+                f"{profile_name} {current_path}/{child['name']}"
                 if current_path
-                else f"{child['name']}"
+                else f"{profile_name} {child['name']}"
             )
 
             repository.insert_bookmark(
@@ -36,5 +35,4 @@ def parse_bookmarks(repository, node, profile_name, current_path):
                 url=child["url"],
                 full_path=normalize_string(full_path),
                 last_used=child.get('date_last_used', google_timestamp_now()),
-                profile=profile_name
             )

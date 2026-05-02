@@ -11,11 +11,10 @@ def remove_last_part(path): # 🌠 maybe move to a folder
     return "/".join(parts[:-1])
 
 
-def format_description(full_path, url): # 🌠 maybe move to a folder
-    profile, path = split_string(full_path)
-    path = remove_last_part(path)
+def format_description(profile_name, rest_path, url): # 🌠 maybe move to a folder
+    path = remove_last_part(rest_path)
 
-    prefix = f"({profile})"
+    prefix = f"({profile_name})"
 
     if path:
         prefix += f" {path}"
@@ -26,7 +25,7 @@ def format_description(full_path, url): # 🌠 maybe move to a folder
 def get_url_item(item, preferences):
     full_path = item.get("full_path", "")
 
-    profile_name = item.get("profile", "")
+    profile_name, rest_path = split_string(full_path)
     profile_path = get_profile_path(profile_name, preferences)
     chrome_profile = os.path.basename(profile_path)
 
@@ -36,7 +35,7 @@ def get_url_item(item, preferences):
     return {
         "icon": get_favicon(bookmark_url, profile_path),
         "name": bookmark_name,
-        "description": format_description(full_path, bookmark_url),
+        "description": format_description(profile_name, rest_path, bookmark_url),
         "on_enter": ExtensionCustomAction(
             {
                 "action": "open_bookmark",

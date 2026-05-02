@@ -17,7 +17,6 @@ class BookmarkRepository:
             name TEXT,
             url TEXT,
             full_path TEXT,
-            profile TEXT,
             last_used INTEGER
         )
         """)
@@ -27,7 +26,6 @@ class BookmarkRepository:
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             name TEXT,
             full_path TEXT,
-            profile TEXT,
             last_used INTEGER
         )
         """)
@@ -38,63 +36,42 @@ class BookmarkRepository:
 
         self.conn.commit()
 
-    def insert_bookmark(self, name, url, full_path, last_used, profile):
+    def insert_bookmark(self, name, url, full_path, last_used):
         self.cursor.execute("""
-            INSERT OR REPLACE INTO bookmarks (name, url, full_path, last_used, profile)
-            VALUES (?, ?, ?, ?, ?)
+            INSERT OR REPLACE INTO bookmarks (name, url, full_path, last_used)
+            VALUES (?, ?, ?, ?)
         """, (
             name,
             url,
             full_path,
-            last_used,
-            profile
+            last_used
         ))
 
-    def insert_folder(self, name, full_path, last_used, profile):
+    def insert_folder(self, name, full_path, last_used):
         self.conn.execute("""
-            INSERT INTO folders (name, full_path, last_used, profile)
-            VALUES (?, ?, ?, ?)
-        """, (name, full_path, last_used, profile))
+            INSERT INTO folders (name, full_path, last_used)
+            VALUES (?, ?, ?)
+        """, (name, full_path, last_used))
 
-    def search_by_url(self, query, profile, limit, profiles):
-        if profile in profiles:
-            self.cursor = self.conn.execute("""
-                SELECT id, name, url, full_path, last_used, profile
-                FROM bookmarks
-                WHERE full_path LIKE ?
-                AND profile = ?
-                ORDER BY last_used DESC
-                LIMIT ?
-            """, (f"%{query}%", profile, limit))
-        else:
-            self.cursor = self.conn.execute("""
-                SELECT id, name, url, full_path, last_used, profile
-                FROM bookmarks
-                WHERE full_path LIKE ?
-                ORDER BY last_used DESC
-                LIMIT ?
-            """, (f"%{query}%", limit))
+    def search_by_url(self, query, limit):
+        self.cursor = self.conn.execute("""
+            SELECT id, name, url, full_path, last_used
+            FROM bookmarks
+            WHERE full_path LIKE ?
+            ORDER BY last_used DESC
+            LIMIT ?
+        """, (f"%{query}%", limit))
 
         return [dict(row) for row in self.cursor.fetchall()]
 
-    def search_by_folder(self, query, profile, limit, profiles):
-        if profile in profiles:
-            self.cursor = self.conn.execute("""
-                SELECT id, name, full_path, last_used, profile
-                FROM folders
-                WHERE full_path LIKE ?
-                AND profile = ?
-                ORDER BY last_used DESC
-                LIMIT ?
-            """, (f"%{query}%", profile, limit))
-        else:
-            self.cursor = self.conn.execute("""
-                SELECT id, name, full_path, last_used, profile
-                FROM folders
-                WHERE full_path LIKE ?
-                ORDER BY last_used DESC
-                LIMIT ?
-            """, (f"%{query}%", limit))
+    def search_by_folder(self, query, limit):
+        self.cursor = self.conn.execute("""
+            SELECT id, name, full_path, last_used
+            FROM folders
+            WHERE full_path LIKE ?
+            ORDER BY last_used DESC
+            LIMIT ?
+        """, (f"%{query}%", limit))
 
         return [dict(row) for row in self.cursor.fetchall()]
 
@@ -107,7 +84,7 @@ class BookmarkRepository:
 
         self.conn.commit()
 
-    def update_folder_last_used_by_id(self, item_id, last_used):
+    def update_folder_last_used_by_id(self, item_id, last_used): # 🌠 not implemented
         self.conn.execute("""
             UPDATE folders
             SET last_used = ?
