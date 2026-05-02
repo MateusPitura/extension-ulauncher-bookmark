@@ -1,6 +1,6 @@
-from .remove_url_prefix import remove_url_prefix
-from .normalize_string import normalize_string
-from .google_timestamp_now import google_timestamp_now
+from src.utils.normalize_string import normalize_string
+from src.utils.google_timestamp_now import google_timestamp_now
+
 
 def parse_bookmarks(repository, node, profile_name, current_path):
     if "children" not in node:

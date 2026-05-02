@@ -1,5 +1,6 @@
 from datetime import datetime, timezone
 
+
 def google_timestamp_now():
     epoch_1601 = datetime(1601, 1, 1, tzinfo=timezone.utc)
     now = datetime.now(timezone.utc)

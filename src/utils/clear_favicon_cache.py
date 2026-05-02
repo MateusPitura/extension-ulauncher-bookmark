@@ -1,6 +1,7 @@
 import os
 import shutil
-from .constants import CACHE_DIR
+from src.constants.cache import CACHE_DIR
+
 
 def clear_cache():
     if os.path.exists(CACHE_DIR):

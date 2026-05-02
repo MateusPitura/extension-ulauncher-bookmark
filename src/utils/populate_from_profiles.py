@@ -1,10 +1,11 @@
-from .parse_bookmarks import parse_bookmarks
+from src.utils.parse_bookmarks import parse_bookmarks
 import os
 import json
-from .normalize_path import normalize_path
+from src.utils.normalize_path import normalize_path
+
 
 def populate_from_profiles(repository, preferences):
-    profiles = preferences.get("profiles", "")
+    profiles = preferences.utils.get("profiles", "")
     base_path = preferences.get("base_bookmark_path")
 
     for profile in profiles.split(";"):

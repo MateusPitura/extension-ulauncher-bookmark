@@ -1,5 +1,6 @@
 from ulauncher.api.shared.action.SetUserQueryAction import SetUserQueryAction
 
+
 def get_folder_item(item, event):
     keyword = event.get_keyword()
 

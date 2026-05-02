@@ -4,9 +4,10 @@ import tempfile
 import sqlite3
 import os
 import shutil
-from .constants import CACHE_DIR
+from src.constants.cache import CACHE_DIR
 
 DEFAULT_FAVICON = "images/chrome.png"
+
 
 def get_favicon(url, profile_path):
     safe_name = hashlib.md5(url.encode()).hexdigest()

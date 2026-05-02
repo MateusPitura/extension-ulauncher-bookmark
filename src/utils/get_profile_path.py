@@ -1,4 +1,5 @@
-from .normalize_path import normalize_path
+from src.utils.normalize_path import normalize_path
+
 
 def get_profile_path(keyword, extension):
     profiles = extension.preferences.get("profiles", "")

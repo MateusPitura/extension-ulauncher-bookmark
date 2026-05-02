@@ -15,7 +15,7 @@ from ulauncher.api.shared.action.HideWindowAction import HideWindowAction
 from ulauncher.api.shared.item.ExtensionResultItem import ExtensionResultItem
 from ulauncher.api.shared.action.RenderResultListAction import RenderResultListAction
 from ulauncher.api.shared.event import PreferencesEvent
-from src.utils.constants import CACHE_DIR
+from src.constants.cache import CACHE_DIR
 from src.utils.clear_favicon_cache import clear_cache
 from src.utils.get_folder_item import get_folder_item
 from src.utils.split_string import split_string
@@ -29,10 +29,9 @@ class LunetaBrowserBookmark(Extension):
         self.subscribe(ItemEnterEvent, ItemEnterEventListener())
         self.subscribe(PreferencesEvent, PreferencesEventListener())
 
-        os.makedirs(CACHE_DIR, exist_ok=True)
-
         self.repository = BookmarkRepository(dirname=os.path.dirname(__file__))
 
+        os.makedirs(CACHE_DIR, exist_ok=True)
         clear_cache()
 
 
@@ -43,15 +42,24 @@ def get_bookmark_items(query, event, extension):
 
     profile_name, rest_query = split_string(query)
 
-    url_items = extension.repository.search_by_url(rest_query, profile_name, max_results, get_profile_names(extension))
+    url_items = extension.repository.search_by_url(
+        rest_query, profile_name, max_results,
+        get_profile_names(extension)
+    )
     print(f"🌠 url_items: {url_items}")
 
-    folder_items = extension.repository.search_by_folder(rest_query, profile_name, max_results, get_profile_names(extension))
+    folder_items = extension.repository.search_by_folder(
+        rest_query, profile_name, max_results,
+        get_profile_names(extension)
+    )
     print(f"🌠 folder_items: {folder_items}")
 
     url_items_formatted = [get_url_item(item, extension) for item in url_items]
 
-    folder_items_formatted = [get_folder_item(item, event) for item in folder_items]
+    folder_items_formatted = [
+        get_folder_item(item, event)
+        for item in folder_items
+    ]
 
     items = folder_items_formatted + url_items_formatted
     if query == "":
@@ -80,7 +88,10 @@ class ItemEnterEventListener(EventListener):
         url = data["url"]
         bookmark_id = data.get("id")
 
-        extension.repository.update_url_last_used_by_id(bookmark_id, google_timestamp_now())
+        extension.repository.update_url_last_used_by_id(
+            bookmark_id,
+            google_timestamp_now()
+        )
 
         subprocess.Popen([
             "google-chrome",
@@ -100,7 +111,7 @@ class KeywordQueryEventListener(EventListener):
             items = get_bookmark_items(query, event, extension)
 
         except Exception as e:
-            print(f"🌠 error", e)
+            print("🌠 error", e)
             items.append(ExtensionResultItem(
                 icon="images/logo.png",
                 name="Luneta Browser Bookmark",
@@ -108,6 +119,7 @@ class KeywordQueryEventListener(EventListener):
             ))
 
         return RenderResultListAction(items)
+
 
 class PreferencesEventListener(EventListener):
     def on_event(self, event, extension):

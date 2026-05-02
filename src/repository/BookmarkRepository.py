@@ -1,6 +1,7 @@
 import sqlite3
-from ..utils.get_preferences_path import get_preferences_path
+from src.utils.get_preferences_path import get_preferences_path
 import os
+
 
 class BookmarkRepository:
     def __init__(self, dirname):
@@ -48,7 +49,7 @@ class BookmarkRepository:
             last_used,
             profile
         ))
-    
+
     def insert_folder(self, name, full_path, last_used, profile):
         self.conn.execute("""
             INSERT INTO folders (name, full_path, last_used, profile)
@@ -57,8 +58,8 @@ class BookmarkRepository:
 
     def search_by_url(self, query, profile, limit, profiles):
         print(f"🌠 profiles: {profiles}")
-        if(profile in profiles):
-            print(f"🌠 if url")
+        if profile in profiles:
+            print(f"if url")
             self.cursor = self.conn.execute("""
                 SELECT id, name, url, full_path, last_used, profile
                 FROM bookmarks
@@ -68,7 +69,7 @@ class BookmarkRepository:
                 LIMIT ?
             """, (f"%{query}%", profile, limit))
         else:
-            print(f"🌠 else url")
+            print("🌠 else url")
             self.cursor = self.conn.execute("""
                 SELECT id, name, url, full_path, last_used, profile
                 FROM bookmarks
@@ -76,13 +77,12 @@ class BookmarkRepository:
                 ORDER BY last_used DESC
                 LIMIT ?
             """, (f"%{query}%", limit))
-            
 
         return [dict(row) for row in self.cursor.fetchall()]
-    
+
     def search_by_folder(self, query, profile, limit, profiles):
         print(f"🌠 profiles: {profiles}")
-        if(profile in profiles):
+        if profile in profiles:
             print(f"🌠 if folder")
             self.cursor = self.conn.execute("""
                 SELECT id, name, full_path, last_used, profile
@@ -103,7 +103,7 @@ class BookmarkRepository:
             """, (f"%{query}%", limit))
 
         return [dict(row) for row in self.cursor.fetchall()]
-    
+
     def update_url_last_used_by_id(self, item_id, last_used):
         self.conn.execute("""
             UPDATE bookmarks
