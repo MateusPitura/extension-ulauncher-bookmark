@@ -13,6 +13,7 @@ def get_profiles_items(keyword, preferences):
 
             profile_path = get_profile_path(name, preferences)
 
+            print(f"🌠 profile_path: {profile_path}")
             profiles_names.append({
                 "icon": f"{profile_path}/Google Profile Picture.png",
                 "name": name.strip(),
