@@ -4,6 +4,16 @@ import os
 from .get_favicon import get_favicon
 from .remove_url_prefix import remove_url_prefix
 
+def remove_last_part(path):
+    parts = path.split("/")
+    return "/".join(parts[:-1])
+
+def format_description(full_path, url):
+    profile, path = full_path.split(" ", 1).strip()
+    path = remove_last_part(path)
+    return f"({profile}) {path} • {remove_url_prefix(url)}"
+
+
 def get_url_item(item, extension):
     full_path = item.get("full_path", "")
 
@@ -17,7 +27,7 @@ def get_url_item(item, extension):
     return {
         "icon": get_favicon(bookmark_url, profile_path),
         "name": bookmark_name,
-        "description": f"{"/".join(full_path.split("/")[:-1])} {remove_url_prefix(bookmark_url)}",
+        "description": format_description(full_path, bookmark_url),
         "on_enter": ExtensionCustomAction(
             {
                 "action": "open_bookmark",
