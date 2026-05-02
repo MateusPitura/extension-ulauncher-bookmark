@@ -1,4 +1,5 @@
-def split_string(input):
-    profile_name, rest = input.split(" ", 1)
-
-    return (profile_name.strip() or "", rest.strip() or "")
+def split_string(s):
+    parts = s.split(" ", 1)
+    if len(parts) == 1:
+        return parts[0].strip(), ""
+    return parts[0].strip(), parts[1].strip()
