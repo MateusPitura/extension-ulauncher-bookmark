@@ -44,7 +44,7 @@ def get_bookmark_items(query, event, extension):
 
     url_items = extension.repository.search_by_url(rest_query, profile_name, max_results)
 
-    folder_items = extension.repository.search_by_folder(query, max_results)
+    folder_items = extension.repository.search_by_folder(rest_query, profile_name, max_results)
 
     url_items_formatted = [get_url_item(item, extension) for item in url_items]
 

@@ -26,6 +26,7 @@ class BookmarkRepository:
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             name TEXT,
             full_path TEXT,
+            profile TEXT,
             last_used INTEGER
         )
         """)
@@ -48,11 +49,11 @@ class BookmarkRepository:
             profile
         ))
     
-    def insert_folder(self, name, full_path, last_used):
+    def insert_folder(self, name, full_path, last_used, profile):
         self.conn.execute("""
-            INSERT INTO folders (name, full_path, last_used)
-            VALUES (?, ?, ?)
-        """, (name, full_path, last_used))
+            INSERT INTO folders (name, full_path, last_used, profile)
+            VALUES (?, ?, ?, ?)
+        """, (name, full_path, last_used, profile))
 
     def search_by_url(self, query, profile, limit):
         self.cursor = self.conn.execute("""
@@ -66,14 +67,15 @@ class BookmarkRepository:
 
         return [dict(row) for row in self.cursor.fetchall()]
     
-    def search_by_folder(self, query, limit):
+    def search_by_folder(self, query, profile, limit):
         self.cursor = self.conn.execute("""
             SELECT id, name, full_path, last_used
             FROM folders
             WHERE full_path LIKE ?
+            AND profile = ?
             ORDER BY last_used DESC
             LIMIT ?
-        """, (f"%{query}%", limit))
+        """, (f"%{query}%", profile, limit))
 
         return [dict(row) for row in self.cursor.fetchall()]
     
