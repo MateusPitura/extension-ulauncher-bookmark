@@ -18,7 +18,9 @@ class BookmarkRepository:
             full_path TEXT,
             last_used INTEGER
         )
-                            
+        """)
+
+        self.cursor.execute("""
         CREATE TABLE IF NOT EXISTS folders (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             name TEXT,
