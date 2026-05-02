@@ -4,12 +4,25 @@ from src.utils.get_max_results import get_max_results
 from src.utils.get_url_item import get_url_item
 from src.utils.normalize_string import normalize_string
 from src.utils.get_folder_item import get_folder_item
+from src.utils.get_profile_names import get_profile_names
+from src.utils.split_string import split_string
 
 
 def get_bookmark_items(query, keyword, preferences, repository):
     query = normalize_string(query.strip())
 
     max_results = get_max_results(preferences)
+
+    if "/" in query:
+        prefix, bookmark_name_query = query.rsplit("/", 1)
+        query = f"{prefix}/%{bookmark_name_query}%"
+    else:
+        profile_name, rest_query = split_string(query)
+        profile_names = get_profile_names(preferences)
+        if profile_name in profile_names:
+            query = f"{profile_name} %{rest_query}%"
+        else:
+            query = f"%{query}%"
 
     url_items = repository.search_by_url(query, max_results,)
 

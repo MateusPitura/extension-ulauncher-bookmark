@@ -1,4 +1,4 @@
-def get_profile_names(preferences): # 🌠 remove
+def get_profile_names(preferences):
     profiles = preferences.get("profiles", "")
 
     profiles_names = []

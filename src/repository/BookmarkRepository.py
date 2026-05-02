@@ -60,7 +60,7 @@ class BookmarkRepository:
             WHERE full_path LIKE ?
             ORDER BY last_used DESC
             LIMIT ?
-        """, (f"%{query}%", limit))
+        """, (query, limit))
 
         return [dict(row) for row in self.cursor.fetchall()]
 
@@ -71,7 +71,7 @@ class BookmarkRepository:
             WHERE full_path LIKE ?
             ORDER BY last_used DESC
             LIMIT ?
-        """, (f"%{query}%", limit))
+        """, (query, limit))
 
         return [dict(row) for row in self.cursor.fetchall()]
 
