@@ -203,6 +203,76 @@ def test_show_subfolders(before_all):
     count_folders = sum(1 for item in result if item["description"] == "Click to filter by this folder")
     assert count_folders == 5
 
+def test_search_subfolder(before_all):
+    preferences = before_all['preferences']
+    repository = before_all['repository']
+
+    result = get_bookmark_items(
+        "work functions",
+        "bm",
+        preferences,
+        repository
+    )
+
+    print(f"🌠 result: {result}")
+    assert result[0]["name"] == "Azure Functions"
+    assert result[0]["description"] == "Click to filter by this folder"
+
+def test_filter_folder_without_profile(before_all):
+    preferences = before_all['preferences']
+    repository = before_all['repository']
+
+    result = get_bookmark_items(
+        "azure/",
+        "bm",
+        preferences,
+        repository
+    )
+
+    assert len(result) == 10
+
+def test_filter_subfolder_without_profile(before_all):
+    preferences = before_all['preferences']
+    repository = before_all['repository']
+
+    result = get_bookmark_items(
+        "functions/",
+        "bm",
+        preferences,
+        repository
+    )
+
+    assert len(result) == 5
+
+def test_search_subfolder_without_profile(before_all):
+    preferences = before_all['preferences']
+    repository = before_all['repository']
+
+    result = get_bookmark_items(
+        "functions",
+        "bm",
+        preferences,
+        repository
+    )
+
+    print(f"🌠 result: {result}")
+    assert result[0]["name"] == "Azure Functions"
+    assert result[0]["description"] == "Click to filter by this folder"
+
+def test_no_folders_empty_query(before_all):
+    preferences = before_all['preferences']
+    repository = before_all['repository']
+
+    result = get_bookmark_items(
+        "",
+        "bm",
+        preferences,
+        repository
+    )
+
+    count_folders = sum(1 for item in result if item["description"] == "Click to filter by this folder")
+    assert count_folders == 0
+
 def test_show_profiles_empty_query(before_all):
     preferences = before_all['preferences']
     repository = before_all['repository']

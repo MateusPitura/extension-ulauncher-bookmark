@@ -13,16 +13,20 @@ def get_bookmark_items(query, keyword, preferences, repository):
 
     max_results = get_max_results(preferences)
 
+    show_sub_folders = False
     if "/" in query:
+        show_sub_folders = True
         prefix, bookmark_name_query = query.rsplit("/", 1)
-        query = f"{prefix}/%{bookmark_name_query}%"
+        query = f"%{prefix}/%{bookmark_name_query}%"
     else:
         profile_name, rest_query = split_string(query)
         profile_names = get_profile_names(preferences)
         if profile_name in profile_names:
+            show_sub_folders = True if rest_query == "" else False
             query = f"{profile_name} %{rest_query}%"
         else:
             query = f"%{query}%"
+    print(f"🌠 query: {query}")
 
     url_items = repository.search_by_url(query, max_results,)
 
@@ -33,7 +37,7 @@ def get_bookmark_items(query, keyword, preferences, repository):
     slash_count = query.count("/")
     folder_items_formatted = []
     for item in folder_items:
-        if item.get("full_path", "").count("/") > slash_count:
+        if show_sub_folders and item.get("full_path", "").count("/") > slash_count:
             continue
         folder_items_formatted.append(get_folder_item(item, keyword))
 
