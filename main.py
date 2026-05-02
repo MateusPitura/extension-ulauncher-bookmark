@@ -69,7 +69,7 @@ def get_bookmark_items(query, event, extension):
             description=item["description"],
             on_enter=item["on_enter"]
         )
-        for item in items[:max_results] # also get max results because the final result is items from database (already limit) with profile_items
+        for item in items[:max_results] # also limit to max results because the final result is items from database (already limited) with profile_items
     ]
 
 

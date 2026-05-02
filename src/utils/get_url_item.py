@@ -14,7 +14,7 @@ def get_url_item(item, extension):
 
     return {
         "icon": get_favicon(bookmark_url, profile_path),
-        "name": bookmark_name,
+        "name": f"{profile_name} • {bookmark_name}",
         "description": remove_url_prefix(bookmark_url),
         "on_enter": ExtensionCustomAction(
             {
