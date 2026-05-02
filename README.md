@@ -34,9 +34,23 @@ This ULauncher extension allows users to search and navigate their browser bookm
 
 1. In Ulauncher app settings add an extension with the link https://github.com/MateusPitura/extension-ulauncher-bookmark
 
+### For devs
+
+Run tests with:
+- `python3 -m venv venv/`
+- `source venv/bin/activate`
+- `pip install -r requirements.txt`
+- `PYTHONPATH=. pytest`
+
 ## Technologies Used
 
-:heavy_check_mark: Python 
+<!--Link for badges: https://github.com/Ileriayo/markdown-badges -->
+
+<p align="left">
+	<img src="https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54" alt="Python"/>
+  <img src="https://img.shields.io/badge/pytest-%23ffffff.svg?style=for-the-badge&logo=pytest&logoColor=2f9fe3" alt="PyTest"/>
+  <img src="https://img.shields.io/badge/sqlite-%2307405e.svg?style=for-the-badge&logo=sqlite&logoColor=white" alt="SqLite"/>
+</p>  
 
 ## Authors 
 

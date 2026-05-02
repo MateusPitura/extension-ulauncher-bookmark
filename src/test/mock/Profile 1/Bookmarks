@@ -1,0 +1,1075 @@
+{
+   "checksum": "<checksum>",
+   "roots": {
+      "bookmark_bar": {
+         "children": [  ],
+         "date_added": "13412820369124237",
+         "date_last_used": "0",
+         "date_modified": "13412969355810083",
+         "guid": "<guid>",
+         "id": "1",
+         "name": "Bookmarks bar",
+         "type": "folder"
+      },
+      "other": {
+         "children": [ {
+            "date_added": "13360448929469910",
+            "date_last_used": "13420416972368140",
+            "guid": "<guid>",
+            "id": "5",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "WhatsApp Web",
+            "type": "url",
+            "url": "https://www.example.com"
+         }, {
+            "date_added": "13371076625421795",
+            "date_last_used": "13421443783724442",
+            "guid": "<guid>",
+            "id": "6",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "WeTransfer",
+            "type": "url",
+            "url": "https://www.example.com"
+         }, {
+            "date_added": "13364917351287800",
+            "date_last_used": "13420831925721866",
+            "guid": "<guid>",
+            "id": "7",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "WeTransfer",
+            "type": "url",
+            "url": "https://www.example.com"
+         }, {
+            "date_added": "13360448958078004",
+            "date_last_used": "0",
+            "guid": "<guid>",
+            "id": "8",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "Pixlr",
+            "type": "url",
+            "url": "https://www.example.com"
+         }, {
+            "date_added": "13382716243415437",
+            "date_last_used": "13405440955087506",
+            "guid": "<guid>",
+            "id": "9",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "Prezi",
+            "type": "url",
+            "url": "https://www.example.com"
+         }, {
+            "date_added": "13401310531254577",
+            "date_last_used": "0",
+            "guid": "<guid>",
+            "id": "10",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "Codecademy",
+            "type": "url",
+            "url": "https://www.example.com"
+         }, {
+            "date_added": "13386803317850363",
+            "date_last_used": "13409157146721801",
+            "guid": "<guid>",
+            "id": "11",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "Perplexity",
+            "type": "url",
+            "url": "https://www.example.com"
+         }, {
+            "date_added": "13407345344382236",
+            "date_last_used": "13410471489722153",
+            "guid": "<guid>",
+            "id": "12",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "Gmail",
+            "type": "url",
+            "url": "https://www.example.com"
+         }, {
+            "date_added": "13401576459402925",
+            "date_last_used": "0",
+            "guid": "<guid>",
+            "id": "13",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "IGN",
+            "type": "url",
+            "url": "https://www.example.com"
+         }, {
+            "date_added": "13382019993221591",
+            "date_last_used": "13422139472478316",
+            "guid": "<guid>",
+            "id": "14",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "Netlify",
+            "type": "url",
+            "url": "https://www.example.com"
+         }, {
+            "date_added": "13382020004495649",
+            "date_last_used": "13420172547558026",
+            "guid": "<guid>",
+            "id": "15",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "Asana",
+            "type": "url",
+            "url": "https://www.example.com"
+         }, {
+            "date_added": "13382020684463077",
+            "date_last_used": "13421514474213282",
+            "guid": "<guid>",
+            "id": "16",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "Bitbucket",
+            "type": "url",
+            "url": "https://www.example.com"
+         }, {
+            "date_added": "13364414459419618",
+            "date_last_used": "13415974604490276",
+            "guid": "<guid>",
+            "id": "18",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "Product Hunt",
+            "type": "url",
+            "url": "https://www.example.com"
+         }, {
+            "date_added": "13360690117701787",
+            "date_last_used": "13406845702834329",
+            "guid": "<guid>",
+            "id": "19",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "Vercel",
+            "type": "url",
+            "url": "https://www.example.com"
+         }, {
+            "date_added": "13405029301346216",
+            "date_last_used": "13405633481899683",
+            "guid": "<guid>",
+            "id": "92",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "Robinhood",
+            "type": "url",
+            "url": "https://www.example.com"
+         }, {
+            "children": [ {
+               "date_added": "13400077758439482",
+               "date_last_used": "0",
+               "guid": "<guid>",
+               "id": "94",
+               "meta_info": {
+                  "power_bookmark_meta": ""
+               },
+               "name": "Figma",
+               "type": "url",
+               "url": "https://www.example.com"
+            }, {
+               "date_added": "13409167148288506",
+               "date_last_used": "13414783081512434",
+               "guid": "<guid>",
+               "id": "95",
+               "meta_info": {
+                  "power_bookmark_meta": ""
+               },
+               "name": "Xbox",
+               "type": "url",
+               "url": "https://www.example.com"
+            }, {
+               "date_added": "13421421386509890",
+               "date_last_used": "13422051395066575",
+               "guid": "<guid>",
+               "id": "119",
+               "meta_info": {
+                  "power_bookmark_meta": ""
+               },
+               "name": "Adobe",
+               "type": "url",
+               "url": "https://www.example.com"
+            } ],
+            "date_added": "13383261790760392",
+            "date_last_used": "0",
+            "date_modified": "13421421397624822",
+            "guid": "<guid>",
+            "id": "91",
+            "name": "WhatsApp Web",
+            "type": "folder"
+         }, {
+            "children": [ {
+               "date_added": "13399761605680153",
+               "date_last_used": "13399993880689167",
+               "guid": "<guid>",
+               "id": "98",
+               "meta_info": {
+                  "power_bookmark_meta": ""
+               },
+               "name": "Perplexity",
+               "type": "url",
+               "url": "https://www.example.com"
+            }, {
+               "date_added": "13409167158272016",
+               "date_last_used": "13413054999135898",
+               "guid": "<guid>",
+               "id": "99",
+               "meta_info": {
+                  "power_bookmark_meta": ""
+               },
+               "name": "CNN",
+               "type": "url",
+               "url": "https://www.example.com"
+            }, {
+               "date_added": "13421421333483464",
+               "date_last_used": "13422033759977066",
+               "guid": "<guid>",
+               "id": "117",
+               "meta_info": {
+                  "power_bookmark_meta": ""
+               },
+               "name": "Giphy",
+               "type": "url",
+               "url": "https://www.example.com"
+            } ],
+            "date_added": "13388249748146846",
+            "date_last_used": "0",
+            "date_modified": "13421421356365937",
+            "guid": "<guid>",
+            "id": "96",
+            "name": "Startpage",
+            "type": "folder"
+         }, {
+            "children": [ {
+               "date_added": "13401312266958347",
+               "date_last_used": "13401312275053476",
+               "guid": "<guid>",
+               "id": "20",
+               "meta_info": {
+                  "power_bookmark_meta": ""
+               },
+               "name": "edX",
+               "type": "url",
+               "url": "https://www.example.com"
+            }, {
+               "date_added": "13404335978957362",
+               "date_last_used": "13419028087970558",
+               "guid": "<guid>",
+               "id": "21",
+               "meta_info": {
+                  "power_bookmark_meta": ""
+               },
+               "name": "Adobe",
+               "type": "url",
+               "url": "https://www.example.com"
+            }, {
+               "date_added": "13368550694823804",
+               "date_last_used": "13420305346547546",
+               "guid": "<guid>",
+               "id": "22",
+               "meta_info": {
+                  "power_bookmark_meta": ""
+               },
+               "name": "Fiverr",
+               "type": "url",
+               "url": "https://www.example.com"
+            }, {
+               "date_added": "13389388188356839",
+               "date_last_used": "13390074028005195",
+               "guid": "<guid>",
+               "id": "23",
+               "meta_info": {
+                  "power_bookmark_meta": ""
+               },
+               "name": "WeTransfer",
+               "type": "url",
+               "url": "https://www.example.com"
+            }, {
+               "date_added": "13371332515986717",
+               "date_last_used": "13391118397870357",
+               "guid": "<guid>",
+               "id": "24",
+               "meta_info": {
+                  "power_bookmark_meta": ""
+               },
+               "name": "Figma",
+               "type": "url",
+               "url": "https://www.example.com"
+            } ],
+            "date_added": "13412969252193372",
+            "date_last_used": "0",
+            "date_modified": "13412969326472979",
+            "guid": "<guid>",
+            "id": "101",
+            "name": "Fast.com",
+            "type": "folder"
+         }, {
+            "children": [ {
+               "date_added": "13364941726103543",
+               "date_last_used": "13417736079379556",
+               "guid": "<guid>",
+               "id": "26",
+               "meta_info": {
+                  "power_bookmark_meta": ""
+               },
+               "name": "Rotten Tomatoes",
+               "type": "url",
+               "url": "https://www.example.com"
+            }, {
+               "date_added": "13383671870446995",
+               "date_last_used": "13407880569258497",
+               "guid": "<guid>",
+               "id": "27",
+               "meta_info": {
+                  "power_bookmark_meta": ""
+               },
+               "name": "edX",
+               "type": "url",
+               "url": "https://www.example.com"
+            }, {
+               "date_added": "13394209881387954",
+               "date_last_used": "13420910484014496",
+               "guid": "<guid>",
+               "id": "28",
+               "meta_info": {
+                  "power_bookmark_meta": ""
+               },
+               "name": "DigitalOcean",
+               "type": "url",
+               "url": "https://www.example.com"
+            }, {
+               "date_added": "13394721694305722",
+               "date_last_used": "13403298015038350",
+               "guid": "<guid>",
+               "id": "45",
+               "meta_info": {
+                  "power_bookmark_meta": ""
+               },
+               "name": "ProtonMail",
+               "type": "url",
+               "url": "https://www.example.com"
+            }, {
+               "date_added": "13378930458375924",
+               "date_last_used": "13399474900062518",
+               "guid": "<guid>",
+               "id": "51",
+               "meta_info": {
+                  "power_bookmark_meta": ""
+               },
+               "name": "Quora",
+               "type": "url",
+               "url": "https://www.example.com"
+            }, {
+               "date_added": "13378913410053282",
+               "date_last_used": "13416093338891844",
+               "guid": "<guid>",
+               "id": "64",
+               "meta_info": {
+                  "power_bookmark_meta": ""
+               },
+               "name": "Zoho",
+               "type": "url",
+               "url": "https://www.example.com"
+            }, {
+               "date_added": "13386340423071406",
+               "date_last_used": "13401823955282720",
+               "guid": "<guid>",
+               "id": "84",
+               "meta_info": {
+                  "power_bookmark_meta": ""
+               },
+               "name": "Zotero",
+               "type": "url",
+               "url": "https://www.example.com"
+            }, {
+               "children": [ {
+                  "date_added": "13394721604553509",
+                  "date_last_used": "13420926745910066",
+                  "guid": "<guid>",
+                  "id": "47",
+                  "meta_info": {
+                     "power_bookmark_meta": ""
+                  },
+                  "name": "Rotten Tomatoes",
+                  "type": "url",
+                  "url": "https://www.example.com"
+               }, {
+                  "date_added": "13394721662641543",
+                  "date_last_used": "13395178255518979",
+                  "guid": "<guid>",
+                  "id": "48",
+                  "meta_info": {
+                     "power_bookmark_meta": ""
+                  },
+                  "name": "DeviantArt",
+                  "type": "url",
+                  "url": "https://www.example.com"
+               }, {
+                  "date_added": "13395178380828202",
+                  "date_last_used": "13421427810632772",
+                  "guid": "<guid>",
+                  "id": "49",
+                  "meta_info": {
+                     "power_bookmark_meta": ""
+                  },
+                  "name": "NYTimes",
+                  "type": "url",
+                  "url": "https://www.example.com"
+               }, {
+                  "date_added": "13399504296133977",
+                  "date_last_used": "13401229658458026",
+                  "guid": "<guid>",
+                  "id": "50",
+                  "meta_info": {
+                     "power_bookmark_meta": ""
+                  },
+                  "name": "Pixlr",
+                  "type": "url",
+                  "url": "https://www.example.com"
+               } ],
+               "date_added": "13394721615997946",
+               "date_last_used": "0",
+               "date_modified": "13399504296133977",
+               "guid": "<guid>",
+               "id": "46",
+               "name": "SendGrid",
+               "type": "folder"
+            }, {
+               "children": [ {
+                  "date_added": "13385148006705008",
+                  "date_last_used": "13399663415132504",
+                  "guid": "<guid>",
+                  "id": "53",
+                  "meta_info": {
+                     "power_bookmark_meta": ""
+                  },
+                  "name": "TradingView",
+                  "type": "url",
+                  "url": "https://www.example.com"
+               }, {
+                  "date_added": "13388248083899780",
+                  "date_last_used": "0",
+                  "guid": "<guid>",
+                  "id": "54",
+                  "meta_info": {
+                     "power_bookmark_meta": ""
+                  },
+                  "name": "Vercel",
+                  "type": "url",
+                  "url": "https://www.example.com"
+               }, {
+                  "date_added": "13388523949707917",
+                  "date_last_used": "13388606411352159",
+                  "guid": "<guid>",
+                  "id": "55",
+                  "meta_info": {
+                     "power_bookmark_meta": ""
+                  },
+                  "name": "Remove.bg",
+                  "type": "url",
+                  "url": "https://www.example.com"
+               }, {
+                  "date_added": "13388607305127761",
+                  "date_last_used": "13409755213602164",
+                  "guid": "<guid>",
+                  "id": "56",
+                  "meta_info": {
+                     "power_bookmark_meta": ""
+                  },
+                  "name": "Outlook",
+                  "type": "url",
+                  "url": "https://www.example.com"
+               }, {
+                  "date_added": "13388607721165710",
+                  "date_last_used": "13392129809190015",
+                  "guid": "<guid>",
+                  "id": "57",
+                  "meta_info": {
+                     "power_bookmark_meta": ""
+                  },
+                  "name": "Scribd",
+                  "type": "url",
+                  "url": "https://www.example.com"
+               }, {
+                  "date_added": "13389910416482652",
+                  "date_last_used": "13397590892460199",
+                  "guid": "<guid>",
+                  "id": "58",
+                  "meta_info": {
+                     "power_bookmark_meta": ""
+                  },
+                  "name": "Metacritic",
+                  "type": "url",
+                  "url": "https://www.example.com"
+               }, {
+                  "date_added": "13391696728042959",
+                  "date_last_used": "13391702697420774",
+                  "guid": "<guid>",
+                  "id": "59",
+                  "meta_info": {
+                     "power_bookmark_meta": ""
+                  },
+                  "name": "Freelancer",
+                  "type": "url",
+                  "url": "https://www.example.com"
+               }, {
+                  "date_added": "13392217580175375",
+                  "date_last_used": "13397590882717952",
+                  "guid": "<guid>",
+                  "id": "60",
+                  "meta_info": {
+                     "power_bookmark_meta": ""
+                  },
+                  "name": "W3Schools",
+                  "type": "url",
+                  "url": "https://www.example.com"
+               }, {
+                  "date_added": "13393430359531181",
+                  "date_last_used": "13412095166723773",
+                  "guid": "<guid>",
+                  "id": "61",
+                  "meta_info": {
+                     "power_bookmark_meta": ""
+                  },
+                  "name": "Facebook",
+                  "type": "url",
+                  "url": "https://www.example.com"
+               }, {
+                  "date_added": "13399761502240349",
+                  "date_last_used": "13400860157415299",
+                  "guid": "<guid>",
+                  "id": "62",
+                  "meta_info": {
+                     "power_bookmark_meta": ""
+                  },
+                  "name": "Ecosia",
+                  "type": "url",
+                  "url": "https://www.example.com"
+               }, {
+                  "date_added": "13411833345929849",
+                  "date_last_used": "0",
+                  "guid": "<guid>",
+                  "id": "63",
+                  "meta_info": {
+                     "power_bookmark_meta": ""
+                  },
+                  "name": "X",
+                  "type": "url",
+                  "url": "https://www.example.com"
+               } ],
+               "date_added": "13385148026206272",
+               "date_last_used": "0",
+               "date_modified": "13411833345929849",
+               "guid": "<guid>",
+               "id": "52",
+               "name": "TinyURL",
+               "type": "folder"
+            }, {
+               "children": [ {
+                  "date_added": "13378913473989954",
+                  "date_last_used": "13383236807903244",
+                  "guid": "<guid>",
+                  "id": "66",
+                  "meta_info": {
+                     "power_bookmark_meta": ""
+                  },
+                  "name": "Pixabay",
+                  "type": "url",
+                  "url": "https://www.example.com"
+               }, {
+                  "date_added": "13378913483774114",
+                  "date_last_used": "0",
+                  "guid": "<guid>",
+                  "id": "67",
+                  "meta_info": {
+                     "power_bookmark_meta": ""
+                  },
+                  "name": "W3Schools",
+                  "type": "url",
+                  "url": "https://www.example.com"
+               }, {
+                  "date_added": "13380299119059994",
+                  "date_last_used": "13383236812117723",
+                  "guid": "<guid>",
+                  "id": "68",
+                  "meta_info": {
+                     "power_bookmark_meta": ""
+                  },
+                  "name": "GoDaddy",
+                  "type": "url",
+                  "url": "https://www.example.com"
+               }, {
+                  "date_added": "13382030527143295",
+                  "date_last_used": "13400001999172415",
+                  "guid": "<guid>",
+                  "id": "69",
+                  "meta_info": {
+                     "power_bookmark_meta": ""
+                  },
+                  "name": "Codecademy",
+                  "type": "url",
+                  "url": "https://www.example.com"
+               }, {
+                  "date_added": "13384289695571010",
+                  "date_last_used": "13384297849662801",
+                  "guid": "<guid>",
+                  "id": "70",
+                  "meta_info": {
+                     "power_bookmark_meta": ""
+                  },
+                  "name": "Netlify",
+                  "type": "url",
+                  "url": "https://www.example.com"
+               }, {
+                  "date_added": "13385148471934824",
+                  "date_last_used": "13419011354216890",
+                  "guid": "<guid>",
+                  "id": "71",
+                  "meta_info": {
+                     "power_bookmark_meta": ""
+                  },
+                  "name": "Kotaku",
+                  "type": "url",
+                  "url": "https://www.example.com"
+               }, {
+                  "date_added": "13385227498233569",
+                  "date_last_used": "0",
+                  "guid": "<guid>",
+                  "id": "72",
+                  "meta_info": {
+                     "power_bookmark_meta": ""
+                  },
+                  "name": "Kotaku",
+                  "type": "url",
+                  "url": "https://www.example.com"
+               }, {
+                  "date_added": "13386366200384254",
+                  "date_last_used": "0",
+                  "guid": "<guid>",
+                  "id": "73",
+                  "meta_info": {
+                     "power_bookmark_meta": ""
+                  },
+                  "name": "Metacritic",
+                  "type": "url",
+                  "url": "https://www.example.com"
+               }, {
+                  "date_added": "13386443997138725",
+                  "date_last_used": "13387290190527001",
+                  "guid": "<guid>",
+                  "id": "74",
+                  "meta_info": {
+                     "power_bookmark_meta": ""
+                  },
+                  "name": "Forbes",
+                  "type": "url",
+                  "url": "https://www.example.com"
+               }, {
+                  "date_added": "13389825884065069",
+                  "date_last_used": "13400710864338450",
+                  "guid": "<guid>",
+                  "id": "75",
+                  "meta_info": {
+                     "power_bookmark_meta": ""
+                  },
+                  "name": "Bitly",
+                  "type": "url",
+                  "url": "https://www.example.com"
+               }, {
+                  "date_added": "13391629025135831",
+                  "date_last_used": "13391640773957497",
+                  "guid": "<guid>",
+                  "id": "76",
+                  "meta_info": {
+                     "power_bookmark_meta": ""
+                  },
+                  "name": "eToro",
+                  "type": "url",
+                  "url": "https://www.example.com"
+               }, {
+                  "date_added": "13391640818518302",
+                  "date_last_used": "13391706752893677",
+                  "guid": "<guid>",
+                  "id": "77",
+                  "meta_info": {
+                     "power_bookmark_meta": ""
+                  },
+                  "name": "Heroku",
+                  "type": "url",
+                  "url": "https://www.example.com"
+               }, {
+                  "date_added": "13394315842370510",
+                  "date_last_used": "13414276015431792",
+                  "guid": "<guid>",
+                  "id": "78",
+                  "meta_info": {
+                     "power_bookmark_meta": ""
+                  },
+                  "name": "Steam",
+                  "type": "url",
+                  "url": "https://www.example.com"
+               }, {
+                  "date_added": "13395172886328939",
+                  "date_last_used": "0",
+                  "guid": "<guid>",
+                  "id": "79",
+                  "meta_info": {
+                     "power_bookmark_meta": ""
+                  },
+                  "name": "Quora",
+                  "type": "url",
+                  "url": "https://www.example.com"
+               }, {
+                  "date_added": "13400711333604446",
+                  "date_last_used": "0",
+                  "guid": "<guid>",
+                  "id": "80",
+                  "meta_info": {
+                     "power_bookmark_meta": ""
+                  },
+                  "name": "Ghost",
+                  "type": "url",
+                  "url": "https://www.example.com"
+               }, {
+                  "date_added": "13400882213468285",
+                  "date_last_used": "0",
+                  "guid": "<guid>",
+                  "id": "81",
+                  "meta_info": {
+                     "power_bookmark_meta": ""
+                  },
+                  "name": "Upwork",
+                  "type": "url",
+                  "url": "https://www.example.com"
+               }, {
+                  "date_added": "13401308410212506",
+                  "date_last_used": "0",
+                  "guid": "<guid>",
+                  "id": "82",
+                  "meta_info": {
+                     "power_bookmark_meta": ""
+                  },
+                  "name": "DownDetector",
+                  "type": "url",
+                  "url": "https://www.example.com"
+               }, {
+                  "date_added": "13405799693746915",
+                  "date_last_used": "0",
+                  "guid": "<guid>",
+                  "id": "83",
+                  "meta_info": {
+                     "power_bookmark_meta": ""
+                  },
+                  "name": "DigitalOcean",
+                  "type": "url",
+                  "url": "https://www.example.com"
+               } ],
+               "date_added": "13378913470126062",
+               "date_last_used": "0",
+               "date_modified": "13405799693746915",
+               "guid": "<guid>",
+               "id": "65",
+               "name": "Rotten Tomatoes",
+               "type": "folder"
+            }, {
+               "children": [ {
+                  "date_added": "13386340471391393",
+                  "date_last_used": "13386875635066742",
+                  "guid": "<guid>",
+                  "id": "86",
+                  "meta_info": {
+                     "power_bookmark_meta": ""
+                  },
+                  "name": "Investing.com",
+                  "type": "url",
+                  "url": "https://www.example.com"
+               }, {
+                  "date_added": "13386364333859618",
+                  "date_last_used": "13400018632149264",
+                  "guid": "<guid>",
+                  "id": "87",
+                  "meta_info": {
+                     "power_bookmark_meta": ""
+                  },
+                  "name": "BBC",
+                  "type": "url",
+                  "url": "https://www.example.com"
+               }, {
+                  "date_added": "13391704796476341",
+                  "date_last_used": "13391706792607215",
+                  "guid": "<guid>",
+                  "id": "88",
+                  "meta_info": {
+                     "power_bookmark_meta": ""
+                  },
+                  "name": "Statista",
+                  "type": "url",
+                  "url": "https://www.example.com"
+               }, {
+                  "date_added": "13394315910245768",
+                  "date_last_used": "13414276101676116",
+                  "guid": "<guid>",
+                  "id": "89",
+                  "meta_info": {
+                     "power_bookmark_meta": ""
+                  },
+                  "name": "Dropbox",
+                  "type": "url",
+                  "url": "https://www.example.com"
+               }, {
+                  "date_added": "13400712836521477",
+                  "date_last_used": "0",
+                  "guid": "<guid>",
+                  "id": "90",
+                  "meta_info": {
+                     "power_bookmark_meta": ""
+                  },
+                  "name": "IMDb",
+                  "type": "url",
+                  "url": "https://www.example.com"
+               } ],
+               "date_added": "13386340467192693",
+               "date_last_used": "0",
+               "date_modified": "13400712836521477",
+               "guid": "<guid>",
+               "id": "85",
+               "name": "Glitch",
+               "type": "folder"
+            }, {
+               "date_added": "13416515472902013",
+               "date_last_used": "0",
+               "guid": "<guid>",
+               "id": "103",
+               "meta_info": {
+                  "power_bookmark_meta": ""
+               },
+               "name": "Upwork",
+               "type": "url",
+               "url": "https://www.example.com"
+            } ],
+            "date_added": "13378913331347676",
+            "date_last_used": "0",
+            "date_modified": "13416515472902013",
+            "guid": "<guid>",
+            "id": "25",
+            "name": "Mashable",
+            "type": "folder"
+         }, {
+            "children": [ {
+               "date_added": "13395249801488246",
+               "date_last_used": "13410618833553883",
+               "guid": "<guid>",
+               "id": "30",
+               "meta_info": {
+                  "power_bookmark_meta": ""
+               },
+               "name": "Netflix",
+               "type": "url",
+               "url": "https://www.example.com"
+            }, {
+               "date_added": "13407250780853981",
+               "date_last_used": "13410618833535227",
+               "guid": "<guid>",
+               "id": "31",
+               "meta_info": {
+                  "power_bookmark_meta": ""
+               },
+               "name": "AWS",
+               "type": "url",
+               "url": "https://www.example.com"
+            }, {
+               "date_added": "13409062813185242",
+               "date_last_used": "13410618895888351",
+               "guid": "<guid>",
+               "id": "32",
+               "meta_info": {
+                  "power_bookmark_meta": ""
+               },
+               "name": "Apple",
+               "type": "url",
+               "url": "https://www.example.com"
+            }, {
+               "date_added": "13407614669309841",
+               "date_last_used": "13414192527454348",
+               "guid": "<guid>",
+               "id": "33",
+               "meta_info": {
+                  "power_bookmark_meta": ""
+               },
+               "name": "Lichess",
+               "type": "url",
+               "url": "https://www.example.com"
+            }, {
+               "date_added": "13407614758470063",
+               "date_last_used": "13414247320793498",
+               "guid": "<guid>",
+               "id": "34",
+               "meta_info": {
+                  "power_bookmark_meta": ""
+               },
+               "name": "eBay",
+               "type": "url",
+               "url": "https://www.example.com"
+            }, {
+               "date_added": "13410622031662227",
+               "date_last_used": "13414251204049626",
+               "guid": "<guid>",
+               "id": "38",
+               "meta_info": {
+                  "power_bookmark_meta": ""
+               },
+               "name": "Dribbble",
+               "type": "url",
+               "url": "https://www.example.com"
+            }, {
+               "date_added": "13412463957161705",
+               "date_last_used": "13415141065061504",
+               "guid": "<guid>",
+               "id": "39",
+               "meta_info": {
+                  "power_bookmark_meta": ""
+               },
+               "name": "Stability AI",
+               "type": "url",
+               "url": "https://www.example.com"
+            }, {
+               "date_added": "13395173388732800",
+               "date_last_used": "13412457792413703",
+               "guid": "<guid>",
+               "id": "40",
+               "meta_info": {
+                  "power_bookmark_meta": ""
+               },
+               "name": "Discord",
+               "type": "url",
+               "url": "https://www.example.com"
+            }, {
+               "date_added": "13412463915408616",
+               "date_last_used": "13414767656063376",
+               "guid": "<guid>",
+               "id": "42",
+               "meta_info": {
+                  "power_bookmark_meta": ""
+               },
+               "name": "Duolingo",
+               "type": "url",
+               "url": "https://www.example.com"
+            }, {
+               "date_added": "13410883782757483",
+               "date_last_used": "0",
+               "guid": "<guid>",
+               "id": "43",
+               "meta_info": {
+                  "power_bookmark_meta": ""
+               },
+               "name": "Metacritic",
+               "type": "url",
+               "url": "https://www.example.com"
+            }, {
+               "date_added": "13410883819717706",
+               "date_last_used": "0",
+               "guid": "<guid>",
+               "id": "44",
+               "meta_info": {
+                  "power_bookmark_meta": ""
+               },
+               "name": "Outlook",
+               "type": "url",
+               "url": "https://www.example.com"
+            }, {
+               "date_added": "13403898716393366",
+               "date_last_used": "13412969882993887",
+               "guid": "<guid>",
+               "id": "35",
+               "meta_info": {
+                  "power_bookmark_meta": ""
+               },
+               "name": "Stack Overflow",
+               "type": "url",
+               "url": "https://www.example.com"
+            }, {
+               "date_added": "13403898768221063",
+               "date_last_used": "13412969881418856",
+               "guid": "<guid>",
+               "id": "36",
+               "meta_info": {
+                  "power_bookmark_meta": ""
+               },
+               "name": "Glassdoor",
+               "type": "url",
+               "url": "https://www.example.com"
+            }, {
+               "date_added": "13403903674414185",
+               "date_last_used": "13412969876793937",
+               "guid": "<guid>",
+               "id": "37",
+               "meta_info": {
+                  "power_bookmark_meta": ""
+               },
+               "name": "Bitbucket",
+               "type": "url",
+               "url": "https://www.example.com"
+            } ],
+            "date_added": "13403898673990194",
+            "date_last_used": "0",
+            "date_modified": "13412969892552320",
+            "guid": "<guid>",
+            "id": "29",
+            "name": "Zoom",
+            "type": "folder"
+         }, {
+            "date_added": "13417141058754740",
+            "date_last_used": "0",
+            "guid": "<guid>",
+            "id": "107",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "Google Drive",
+            "type": "url",
+            "url": "https://www.example.com"
+         } ],
+         "date_added": "13412820369124237",
+         "date_last_used": "0",
+         "date_modified": "13421421386509890",
+         "guid": "<guid>",
+         "id": "2",
+         "name": "Other bookmarks",
+         "type": "folder"
+      },
+      "synced": {
+         "children": [  ],
+         "date_added": "13412820369124237",
+         "date_last_used": "0",
+         "date_modified": "0",
+         "guid": "<guid>",
+         "id": "3",
+         "name": "Mobile bookmarks",
+         "type": "folder"
+      }
+   },
+   "sync_metadata": "<sync_metadata>",
+   "version": 1
+}
