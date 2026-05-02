@@ -201,3 +201,20 @@ def test_show_subfolders(before_all):
 
     print(f"🌠 result: {result}")
     pass # 🌠 implement
+
+def test_show_profiles_empty_query(before_all):
+    preferences = before_all['preferences']
+    repository = before_all['repository']
+
+    result = get_bookmark_items(
+        "",
+        "bm",
+        preferences,
+        repository
+    )
+
+    assert result[0]["name"] == "personal"
+    assert result[0]["description"] == "Click to filter by this profile"
+
+    assert result[1]["name"] == "work"
+    assert result[1]["description"] == "Click to filter by this profile"

@@ -36,7 +36,7 @@ def get_bookmark_items(query, keyword, preferences, repository):
     ]
 
     items = folder_items_formatted + url_items_formatted
-    if query == "":
+    if query == "%%":
         profile_items = get_profiles_items(keyword, preferences)
         items = profile_items + items
 
