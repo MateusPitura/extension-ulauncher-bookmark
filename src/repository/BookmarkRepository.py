@@ -16,6 +16,7 @@ class BookmarkRepository:
             name TEXT,
             url TEXT,
             full_path TEXT,
+            profile TEXT,
             last_used INTEGER
         )
         """)
@@ -37,8 +38,8 @@ class BookmarkRepository:
 
     def insert_bookmark(self, name, url, full_path, last_used):
         self.cursor.execute("""
-            INSERT OR REPLACE INTO bookmarks (name, url, full_path, last_used)
-            VALUES (?, ?, ?, ?)
+            INSERT OR REPLACE INTO bookmarks (name, url, full_path, last_used, profile)
+            VALUES (?, ?, ?, ?, ?)
         """, (
             name,
             url,

@@ -34,5 +34,6 @@ def parse_bookmarks(repository, node, profile_name, current_path):
                 name=child["name"],
                 url=child["url"],
                 full_path=normalize_string(full_path),
-                last_used=child.get('date_last_used', google_timestamp_now())
+                last_used=child.get('date_last_used', google_timestamp_now()),
+                profile=profile_name
             )
