@@ -193,14 +193,15 @@ def test_show_subfolders(before_all):
     repository = before_all['repository']
 
     result = get_bookmark_items(
-        "personal toplink/hub",
+        "work ",
         "bm",
         preferences,
         repository
     )
 
     print(f"🌠 result: {result}")
-    pass # 🌠 implement
+    count_folders = sum(1 for item in result if item["description"] == "Click to filter by this folder")
+    assert count_folders == 5
 
 def test_show_profiles_empty_query(before_all):
     preferences = before_all['preferences']

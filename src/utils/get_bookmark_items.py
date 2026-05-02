@@ -30,10 +30,12 @@ def get_bookmark_items(query, keyword, preferences, repository):
 
     url_items_formatted = [get_url_item(item, preferences) for item in url_items]
 
-    folder_items_formatted = [
-        get_folder_item(item, keyword)
-        for item in folder_items
-    ]
+    slash_count = query.count("/")
+    folder_items_formatted = []
+    for item in folder_items:
+        if item.get("full_path", "").count("/") > slash_count:
+            continue
+        folder_items_formatted.append(get_folder_item(item, keyword))
 
     items = folder_items_formatted + url_items_formatted
     if query == "%%":
