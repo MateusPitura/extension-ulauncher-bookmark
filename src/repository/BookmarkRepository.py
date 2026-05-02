@@ -65,14 +65,15 @@ class BookmarkRepository:
                 ORDER BY last_used DESC
                 LIMIT ?
             """, (f"%{query}%", profile, limit))
+        else:
+            self.cursor = self.conn.execute("""
+                SELECT id, name, url, full_path, last_used
+                FROM bookmarks
+                WHERE full_path LIKE ?
+                ORDER BY last_used DESC
+                LIMIT ?
+            """, (f"%{query}%", limit))
             
-        self.cursor = self.conn.execute("""
-            SELECT id, name, url, full_path, last_used
-            FROM bookmarks
-            WHERE full_path LIKE ?
-            ORDER BY last_used DESC
-            LIMIT ?
-        """, (f"%{query}%", limit))
 
         return [dict(row) for row in self.cursor.fetchall()]
     
@@ -86,14 +87,14 @@ class BookmarkRepository:
                 ORDER BY last_used DESC
                 LIMIT ?
             """, (f"%{query}%", profile, limit))
-
-        self.cursor = self.conn.execute("""
-            SELECT id, name, full_path, last_used
-            FROM folders
-            WHERE full_path LIKE ?
-            ORDER BY last_used DESC
-            LIMIT ?
-        """, (f"%{query}%", limit))
+        else:
+            self.cursor = self.conn.execute("""
+                SELECT id, name, full_path, last_used
+                FROM folders
+                WHERE full_path LIKE ?
+                ORDER BY last_used DESC
+                LIMIT ?
+            """, (f"%{query}%", limit))
 
         return [dict(row) for row in self.cursor.fetchall()]
     
