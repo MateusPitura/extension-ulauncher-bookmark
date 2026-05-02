@@ -31,6 +31,8 @@ class BookmarkRepository:
 
         self.cursor.execute("DELETE FROM bookmarks")
 
+        self.cursor.execute("DELETE FROM folders")
+
         self.conn.commit()
 
     def insert_bookmark(self, name, url, full_path, last_used):

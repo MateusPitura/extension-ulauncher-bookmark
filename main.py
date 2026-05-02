@@ -56,12 +56,14 @@ def get_bookmark_items(query, event, extension):
     url_items = extension.repository.search_by_url(query, max_results)
 
     folder_items = extension.repository.search_by_folder(query, max_results)
+    print(f"🌠 folder_items: {folder_items}")
 
     url_items_formatted = [get_url_item(item, extension) for item in url_items]
 
     folder_items_formatted = [get_folder_item(item, event) for item in folder_items]
+    print(f"🌠 folder_items_formatted: {folder_items_formatted}")
 
-    items = url_items_formatted + folder_items_formatted
+    items = folder_items_formatted + url_items_formatted
     if query == "":
         profile_items = get_profiles_items(event, extension)
         items = profile_items + items
