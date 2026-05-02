@@ -11,7 +11,13 @@ def remove_last_part(path):
 def format_description(full_path, url):
     profile, path = full_path.split(" ", 1)
     path = remove_last_part(path.strip())
-    return f"({profile.strip()}) {path} • {remove_url_prefix(url)}"
+
+    prefix = f"({profile.strip()})"
+
+    if path:
+        prefix += f" {path}"
+
+    return f"{prefix} • {remove_url_prefix(url)}"
 
 
 def get_url_item(item, extension):
