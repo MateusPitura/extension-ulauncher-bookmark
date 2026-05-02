@@ -14,10 +14,10 @@ from ulauncher.api.shared.event import KeywordQueryEvent
 from ulauncher.api.shared.action.HideWindowAction import HideWindowAction
 from ulauncher.api.shared.item.ExtensionResultItem import ExtensionResultItem
 from ulauncher.api.shared.action.RenderResultListAction import RenderResultListAction
-from ulauncher.api.shared.action.SetUserQueryAction import SetUserQueryAction
 from ulauncher.api.shared.event import PreferencesEvent
 from src.utils.constants import CACHE_DIR
 from src.utils.clear_favicon_cache import clear_cache
+from src.utils.get_folder_item import get_folder_item
 
 
 class LunetaBrowserBookmark(Extension):
@@ -32,20 +32,6 @@ class LunetaBrowserBookmark(Extension):
         self.repository = BookmarkRepository(dirname=os.path.dirname(__file__))
 
         clear_cache()
-
-
-def get_folder_item(item, event):
-    keyword = event.get_keyword()
-
-    folder_name = item.get("name", "Unknown")
-    full_path = item.get("full_path", "")
-
-    return {
-        "icon": "images/folder.png",
-        "name": folder_name,
-        "description": "Click to filter by this folder",
-        "on_enter": SetUserQueryAction(f"{keyword} {full_path}/")
-    }
 
 
 def get_bookmark_items(query, event, extension):

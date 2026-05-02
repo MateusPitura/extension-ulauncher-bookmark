@@ -82,3 +82,12 @@ class BookmarkRepository:
         """, (last_used, item_id))
 
         self.conn.commit()
+
+    def update_last_used_by_id(self, item_id, last_used):
+        self.conn.execute("""
+            UPDATE folders
+            SET last_used = ?
+            WHERE id = ?
+        """, (last_used, item_id))
+
+        self.conn.commit()
