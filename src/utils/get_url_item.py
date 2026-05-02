@@ -6,12 +6,12 @@ from src.utils.remove_url_prefix import remove_url_prefix
 from src.utils.split_string import split_string
 
 
-def remove_last_part(path):
+def remove_last_part(path): # 🌠 maybe move to a folder
     parts = path.split("/")
     return "/".join(parts[:-1])
 
 
-def format_description(full_path, url):
+def format_description(full_path, url): # 🌠 maybe move to a folder
     profile, path = split_string(full_path)
     path = remove_last_part(path)
 
@@ -23,11 +23,11 @@ def format_description(full_path, url):
     return f"{prefix} • {remove_url_prefix(url)}"
 
 
-def get_url_item(item, extension):
+def get_url_item(item, preferences):
     full_path = item.get("full_path", "")
 
     profile_name = item.get("profile", "")
-    profile_path = get_profile_path(profile_name, extension)
+    profile_path = get_profile_path(profile_name, preferences)
     chrome_profile = os.path.basename(profile_path)
 
     bookmark_name = item.get("name", "Unknown")

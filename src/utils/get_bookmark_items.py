@@ -8,35 +8,35 @@ from src.utils.split_string import split_string
 from src.utils.get_profile_names import get_profile_names
 
 
-def get_bookmark_items(query, event, extension):
+def get_bookmark_items(query, keyword, preferences, repository):
     query = normalize_string(query.strip())
 
-    max_results = get_max_results(extension)
+    max_results = get_max_results(preferences)
 
     profile_name, rest_query = split_string(query)
 
-    url_items = extension.repository.search_by_url(
+    url_items = repository.search_by_url(
         rest_query, profile_name, max_results,
-        get_profile_names(extension)
+        get_profile_names(preferences)
     )
     print(f"🌠 url_items: {url_items}")
 
-    folder_items = extension.repository.search_by_folder(
+    folder_items = repository.search_by_folder(
         rest_query, profile_name, max_results,
-        get_profile_names(extension)
+        get_profile_names(preferences)
     )
     print(f"🌠 folder_items: {folder_items}")
 
-    url_items_formatted = [get_url_item(item, extension) for item in url_items]
+    url_items_formatted = [get_url_item(item, preferences) for item in url_items]
 
     folder_items_formatted = [
-        get_folder_item(item, event)
+        get_folder_item(item, keyword)
         for item in folder_items
     ]
 
     items = folder_items_formatted + url_items_formatted
     if query == "":
-        profile_items = get_profiles_items(event, extension)
+        profile_items = get_profiles_items(keyword, preferences)
         items = profile_items + items
 
     return [

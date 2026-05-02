@@ -1,9 +1,8 @@
 from ulauncher.api.shared.action.SetUserQueryAction import SetUserQueryAction
 
 
-def get_profiles_items(event, extension):
-    profiles = extension.preferences.get("profiles", "")
-    keyword = event.get_keyword()
+def get_profiles_items(keyword, preferences):
+    profiles = preferences.get("profiles", "")
 
     profiles_names = []
     for profile in profiles.split(";"):

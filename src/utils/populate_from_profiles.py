@@ -1,6 +1,6 @@
-from src.utils.parse_bookmarks import parse_bookmarks
 import os
 import json
+from src.utils.parse_bookmarks import parse_bookmarks
 from src.utils.normalize_path import normalize_path
 
 

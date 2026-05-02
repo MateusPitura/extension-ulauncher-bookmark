@@ -1,5 +1,5 @@
-def get_profile_names(extension):
-    profiles = extension.preferences.get("profiles", "")
+def get_profile_names(preferences):
+    profiles = preferences.get("profiles", "")
 
     profiles_names = []
     for profile in profiles.split(";"):

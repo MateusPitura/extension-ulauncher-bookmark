@@ -1,6 +1,6 @@
+import os
 import sqlite3
 from src.utils.get_preferences_path import get_preferences_path
-import os
 
 
 class BookmarkRepository:

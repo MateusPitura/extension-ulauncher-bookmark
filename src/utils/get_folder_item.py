@@ -1,9 +1,7 @@
 from ulauncher.api.shared.action.SetUserQueryAction import SetUserQueryAction
 
 
-def get_folder_item(item, event):
-    keyword = event.get_keyword()
-
+def get_folder_item(item, keyword):
     folder_name = item.get("name", "Unknown")
     full_path = item.get("full_path", "")
 

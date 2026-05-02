@@ -1,8 +1,8 @@
 from src.utils.normalize_path import normalize_path
 
 
-def get_profile_path(keyword, extension):
-    profiles = extension.preferences.get("profiles", "")
+def get_profile_path(keyword, preferences):
+    profiles = preferences.get("profiles", "")
     for profile in profiles.split(";"):
         if "=" in profile:
             name, path = profile.split("=", 1)

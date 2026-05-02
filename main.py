@@ -1,8 +1,5 @@
 import os
 import subprocess
-from src.repository.BookmarkRepository import BookmarkRepository
-from src.utils.populate_from_profiles import populate_from_profiles
-from src.utils.google_timestamp_now import google_timestamp_now
 from ulauncher.api.client.Extension import Extension
 from ulauncher.api.client.EventListener import EventListener
 from ulauncher.api.shared.event import ItemEnterEvent
@@ -11,9 +8,12 @@ from ulauncher.api.shared.action.HideWindowAction import HideWindowAction
 from ulauncher.api.shared.item.ExtensionResultItem import ExtensionResultItem
 from ulauncher.api.shared.action.RenderResultListAction import RenderResultListAction
 from ulauncher.api.shared.event import PreferencesEvent
-from src.constants.cache import CACHE_DIR
+from src.repository.BookmarkRepository import BookmarkRepository
+from src.utils.populate_from_profiles import populate_from_profiles
+from src.utils.google_timestamp_now import google_timestamp_now
 from src.utils.clear_favicon_cache import clear_cache
 from src.utils.get_bookmark_items import get_bookmark_items
+from src.constants.cache import CACHE_DIR
 
 
 class LunetaBrowserBookmark(Extension):
@@ -60,7 +60,12 @@ class KeywordQueryEventListener(EventListener):
         items = []
 
         try:
-            items = get_bookmark_items(query, event, extension)
+            items = get_bookmark_items(
+                query,
+                event.get_keyword(),
+                extension.preferences,
+                extension.repository
+            )
 
         except Exception as e:
             print("🌠 error", e)
