@@ -56,26 +56,44 @@ class BookmarkRepository:
         """, (name, full_path, last_used, profile))
 
     def search_by_url(self, query, profile, limit):
-        self.cursor = self.conn.execute(f"""
+        if(profile):
+            self.cursor = self.conn.execute("""
+                SELECT id, name, url, full_path, last_used
+                FROM bookmarks
+                WHERE full_path LIKE ?
+                AND profile = ?
+                ORDER BY last_used DESC
+                LIMIT ?
+            """, (f"%{query}%", profile, limit))
+            
+        self.cursor = self.conn.execute("""
             SELECT id, name, url, full_path, last_used
             FROM bookmarks
             WHERE full_path LIKE ?
-            {'AND profile = ?' if profile else ''}
             ORDER BY last_used DESC
             LIMIT ?
-        """, (f"%{query}%", profile, limit))
+        """, (f"%{query}%", limit))
 
         return [dict(row) for row in self.cursor.fetchall()]
     
     def search_by_folder(self, query, profile, limit):
-        self.cursor = self.conn.execute(f"""
+        if(profile):
+            self.cursor = self.conn.execute("""
+                SELECT id, name, full_path, last_used
+                FROM folders
+                WHERE full_path LIKE ?
+                AND profile = ?
+                ORDER BY last_used DESC
+                LIMIT ?
+            """, (f"%{query}%", profile, limit))
+
+        self.cursor = self.conn.execute("""
             SELECT id, name, full_path, last_used
             FROM folders
             WHERE full_path LIKE ?
-            {'AND profile = ?' if profile else ''}
             ORDER BY last_used DESC
             LIMIT ?
-        """, (f"%{query}%", profile, limit))
+        """, (f"%{query}%", limit))
 
         return [dict(row) for row in self.cursor.fetchall()]
     
