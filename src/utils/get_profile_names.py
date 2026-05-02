@@ -1,4 +1,4 @@
-def get_profiles_items(extension):
+def get_profiles_names(extension):
     profiles = extension.preferences.get("profiles", "")
 
     profiles_names = []
