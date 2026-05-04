@@ -68,7 +68,6 @@ class BookmarkRepository:
             SELECT id, name, full_path
             FROM folders
             WHERE full_path LIKE ?
-            ORDER BY last_used DESC
             LIMIT ?
         """, (query, limit))
 
