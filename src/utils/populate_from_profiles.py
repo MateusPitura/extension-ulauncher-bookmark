@@ -16,7 +16,9 @@ def populate_from_profiles(repository, preferences):
         profile_name = profile_name.strip()
         profile_path = os.path.expanduser(normalize_path(profile_path))
 
-        bookmarks_file = os.path.join(profile_path, "Bookmarks")
+        bookmarks_file = os.path.join(profile_path, "AccountBookmarks")
+        if not os.path.isfile(bookmarks_file):
+            bookmarks_file = os.path.join(profile_path, "Bookmarks")
 
         if not os.path.exists(bookmarks_file):
             continue

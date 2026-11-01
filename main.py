@@ -1,5 +1,6 @@
 import os
 import subprocess
+import shutil
 from ulauncher.api.client.Extension import Extension
 from ulauncher.api.client.EventListener import EventListener
 from ulauncher.api.shared.event import ItemEnterEvent
@@ -45,12 +46,21 @@ class ItemEnterEventListener(EventListener):
             google_timestamp_now()
         )
 
-        subprocess.Popen([
-            "google-chrome",
+        chrome = shutil.which("google-chrome") or shutil.which("google-chrome-stable")
+
+        if chrome:
+            command = [chrome]
+        elif shutil.which("flatpak"):
+            command = ["flatpak", "run", "com.google.Chrome"]
+        else:
+            raise FileNotFoundError("Google Chrome was not found")
+
+        command.extend([
             f"--profile-directory={chrome_profile}",
             url
         ])
 
+        subprocess.Popen(command)
         return HideWindowAction()
 
 
